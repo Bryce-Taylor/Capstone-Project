@@ -1,15 +1,15 @@
 # Proposal
 ## Description and Motivation
 
-##Prior Art
+## Prior Art
 
-##Core User Workflows
+## Core User Workflows
 
-##Daily Goals
+## Daily Goals
 
-##Team
+## Team
 - Bryce Taylor
 - Kenia Sandoval-Lopez
 
-##GitHub Repository 
+## GitHub Repository 
 https://github.com/Bryce-Taylor/Capstone-Project
