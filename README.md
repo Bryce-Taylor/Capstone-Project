@@ -11,9 +11,13 @@ The Management Team usually creates all schedules by hand which take time especi
 not do a particular chore that day. We are creating a similar way of creating those schedules 
 without having to recreate the entire thing. 
 ## Core User Workflows
-
-## Daily Goals
-
+- Users can create/ login to an account
+- Users can choose a role either Manger or Worker
+- Workers can create a schedule with the chores they chose.
+- Mangers can edit the schedule
+- Mangers can to check off 3 chores
+## Weekly Goals
+Week 
 ## Team
 - Bryce Taylor
 - Kenia Sandoval-Lopez
