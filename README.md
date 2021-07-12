@@ -18,15 +18,22 @@ without having to recreate the entire thing.
 - Mangers can to check off 3 chores
 ## Weekly Goals
 ### Week 1 (July 12-16)
-- We are going to work on user authentication where the user can create there account 
+#### Bryce:
+- He will be going to work on user authentication where the user can create there account 
   and log in to see the schedules.
-- We are working on the users table to save login information to database. We are also 
+  
+- He will be going to set up our home page and add minimal styling.
+
+#### Kenia:
+- She will be working on the users table to save login information to database. We are also 
   work on our other table to save the schedule information.
-- We are going to set up our home page and add minimal styling.
+  
+#### Both:
 - Meet with client for updates and what we can change 
 
 
 ### Week 2 (July 19-23)
+#### Both:
 - We are working on the schedule for assigning chores following the specific regulations 
 of one person only working 2 days a week.
 - Adding manager check off for 3 chores a week. 
@@ -34,11 +41,16 @@ of one person only working 2 days a week.
 - Meet with client for updates and what we can change
 
 ### Week 3 (July 26-30)
+#### Both:
 - Continue working on emailing for new schedules and also work on notice of missed chore update.
+- 
 - Work on report for the week and scorecard percentages of people who got it done.
+
+#### Both:
 - Meet with client for updates and what we can change
 
 ### Week 4 (August 2-6)
+#### Both:
 - We are going to dedicate our time to styling and on the appearance of the web page
 - We are also going to work on the bread crumb trail to make sure navigation through the 
 web app is proficient. 
