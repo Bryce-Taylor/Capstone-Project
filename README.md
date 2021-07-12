@@ -1,5 +1,5 @@
 # Proposal
-## Description and Motivation
+## Description
 
 ## Prior Art
 
