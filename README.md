@@ -1,14 +1,22 @@
 # Proposal
 ## Description
-We are building a program to generate a weekly chore schedule for the Management Team. The purpose of the Chore Management System is to automatically create a new chore schedule and scorecard each week. Each user will be assigned to what chore they are doing on that day and it will be in their schedule as well. Each of the managers will be reviewing the chores and sign off on each day of the week. The scorecard is used to measure individual and group performance. 
+We are building a program to generate a weekly chore schedule for the Management Team. 
+The purpose of the Chore Management System is to automatically create a new chore schedule 
+and scorecard each week. Each user will be assigned to what chore they are doing on that 
+day. Managers check off on chores. The scorecard is used to measure individual and group performance. 
 
-There are 5 different chores which include; kitchen, floors, bathrooms, lobby, and trash. Two people are assigned one chore per day of the week. One user is only able to work two chores per week. Each chore should be checked off by a manager. A manager can only check off 3 chores a week. Users and Managers should be notified both when a new schedule is uploaded and when a chore is not completed. Managers don't do chores.
+There are 5 different chores which include; kitchen, floors, bathrooms, lobby, and trash. Two people 
+are assigned one chore per day of the week. One user is only able to work two chores per week. Each 
+chore should be checked off by a manager. A manager can only check off 3 chores a week. Users and 
+Managers should be notified both when a new schedule is uploaded and when a chore is not completed. 
+Managers don't do chores.
 
 ## Prior Art
 The Management Team usually creates all schedules by hand which take time especially if one can 
 not do a particular chore that day. We are creating a similar way of creating those schedules 
-without having to recreate the entire thing. I attempted to look for similar projects for job scheduling but could 
-not find any spring projects.
+without having to recreate the entire thing. I attempted to look for similar projects for job scheduling
+but could not find any web applications in spring.
+
 ## Core User Workflows
 1. Login - Users can create/ login to an account
 2. Schedules -  User can sign in and see schedule for this week and following week.
@@ -28,7 +36,7 @@ not find any spring projects.
 
 #### Kenia:
 - We are also work on our schedule table to save the schedule information. I will also work on the schedule class and
-form. I will also met with Bryce to talk about styling.
+form. I will also meet with Bryce to talk about styling. 
 #### Both:
 - Meet with client for updates and what we can change 
 
@@ -37,6 +45,7 @@ form. I will also met with Bryce to talk about styling.
 - Schedules(Users) and User limitations
 - I will be working on the users schedule. Then work on how they only be assigned two days of chores per week.
 #### Kenia: 
+- Schedules and Manager Limitations
 - I will continue styling until Bryce finishes the users schedule and then add the manager check off to that schedule.
 
 #### Both:
@@ -49,6 +58,7 @@ form. I will also met with Bryce to talk about styling.
 - Email(User)
 - I will be working on the emailing portion of the project. Where they are notified when there is a new schedule.
 #### Kenia: 
+- Email
 - I am going to work on emailing if chores are missed for the day and also marking the schedule as missed.
 
 #### Both:
@@ -56,9 +66,11 @@ form. I will also met with Bryce to talk about styling.
 
 ### Week 4 (August 2-6)
 #### Bryce:
-- Scorecards(User)
+- Scorecards(Overall)
 - I will be working on the overall group performance on the scorecard.I also will be working on some styling as well.
 #### Kenia: 
+- Scorecards(Manager)
+- Scorecard(User)
 - I am going to work on the individual and managers score card and any additional css.
 #### Both:
 - We are going to dedicate our time to styling and on the appearance of the web page
