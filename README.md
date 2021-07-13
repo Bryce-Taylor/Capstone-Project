@@ -14,13 +14,13 @@ Managers don't do chores.
 ## Prior Art
 The Management Team usually creates all schedules by hand which take time especially if one can 
 not do a particular chore that day. We are creating a similar way of creating those schedules 
-without having to recreate the entire thing. I attempted to look for similar projects for job scheduling
+without having to recreate the entire thing. We attempted to look for similar projects for job scheduling
 but could not find any web applications in spring.
 
 ## Core User Workflows
 1. Login - Users can create/ login to an account
-2. Schedules -  User can sign in and see schedule for this week and following week.
-3. Sign Up - Users can choose a role either Manger or Worker at Sign up.
+2. Sign Up - Users can choose a role either Manger or Worker at Sign up.
+3. Schedules -  User can sign in and see schedule for this week and following week.
 4. Adjusting Schedules - Mangers can edit the schedule
 5. Managers limitations - Mangers can to check off 3 chores
 6. User limitations - Users can only work 2 days a week
@@ -35,8 +35,8 @@ but could not find any web applications in spring.
 - I will be going to set up our home page and add minimal styling.
 
 #### Kenia:
-- We are also work on our schedule table to save the schedule information. I will also work on the schedule class and
-form. I will also meet with Bryce to talk about styling. 
+- I will also work on our schedule table in the database to save the schedule information. I will also work on the schedule class and
+form. I will work on making users accounts for schedule. I will also meet with Bryce to talk about styling. 
 #### Both:
 - Meet with client for updates and what we can change 
 
