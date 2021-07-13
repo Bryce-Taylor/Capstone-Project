@@ -16,17 +16,19 @@ not do a particular chore that day. We are creating a similar way of creating th
 without having to recreate the entire thing. 
 ## Core User Workflows
 - Users can create/ login to an account
+- User can sign in and see schedule for this week and following week
 - Users can choose a role either Manger or Worker
 - Workers can create a schedule with the chores they chose.
 - Mangers can edit the schedule
 - Mangers can to check off 3 chores
+- Both users and managers will receive a scorecard with performance percentage
 ## Weekly Goals
 ### Week 1 (July 12-16)
 #### Bryce:
 - He will be going to work on user authentication where the user can create there account 
   and log in to see the schedules.
   
-- He will be going to set up our home page and add minimal styling.
+- I will be going to set up our home page and add minimal styling.
 
 #### Kenia:
 - She will be working on the users table to save login information to database. We are also 
