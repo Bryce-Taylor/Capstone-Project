@@ -70,5 +70,10 @@ web app is proficient.
 - Bryce Taylor
 - Kenia Sandoval-Lopez
 
+## Technologies
+- Spring Boot
+- Html/CSS
+- Java
+
 ## GitHub Repository 
 https://github.com/Bryce-Taylor/Capstone-Project
