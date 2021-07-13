@@ -16,12 +16,13 @@ not find any spring projects.
 4. Adjusting Schedules - Mangers can edit the schedule
 5. Managers limitations - Mangers can to check off 3 chores
 6. User limitations - Users can only work 2 days a week
-7. Scorecards - Everyone will receive a scorecard with performance percentage
+7. Email - Users will receive an email about the schedule
+8. Scorecards - Everyone will receive a scorecard with performance percentage
 ## Weekly Goals
 ### Week 1 (July 12-16)
 #### Bryce:
-- I will be going to work on user authentication where the user can create there account 
-  and log in to see the schedules. I will be working on the users table to save login information to database.
+- Login and Signup
+- I will be going to work on user authentication where the user can create there account and log in to see the schedules. I will be working on the users table to save login information to database.
   
 - I will be going to set up our home page and add minimal styling.
 
@@ -33,6 +34,7 @@ form. I will also met with Bryce to talk about styling.
 
 ### Week 2 (July 19-23)
 #### Bryce:
+- Schedules(Users) and User limitations
 - I will be working on the users schedule. Then work on how they only be assigned two days of chores per week.
 #### Kenia: 
 - I will continue styling until Bryce finishes the users schedule and then add the manager check off to that schedule.
@@ -44,6 +46,7 @@ form. I will also met with Bryce to talk about styling.
 ### Week 3 (July 26-30)
 
 #### Bryce: 
+- Email(User)
 - I will be working on the emailing portion of the project. Where they are notified when there is a new schedule.
 #### Kenia: 
 - I am going to work on emailing if chores are missed for the day and also marking the schedule as missed.
@@ -53,7 +56,8 @@ form. I will also met with Bryce to talk about styling.
 
 ### Week 4 (August 2-6)
 #### Bryce:
-- I will be working on the overall group performance on the scorecard.I will work on some styling as well.
+- Scorecards(User)
+- I will be working on the overall group performance on the scorecard.I also will be working on some styling as well.
 #### Kenia: 
 - I am going to work on the individual and managers score card and any additional css.
 #### Both:
