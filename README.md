@@ -25,38 +25,42 @@ without having to recreate the entire thing.
 ## Weekly Goals
 ### Week 1 (July 12-16)
 #### Bryce:
-- He will be going to work on user authentication where the user can create there account 
-  and log in to see the schedules.
+- I will be going to work on user authentication where the user can create there account 
+  and log in to see the schedules. I will be working on the users table to save login information to database.
   
 - I will be going to set up our home page and add minimal styling.
 
 #### Kenia:
-- She will be working on the users table to save login information to database. We are also 
-  work on our other table to save the schedule information.
-  
+- We are also work on our schedule table to save the schedule information. I will also work on the schedule class and
+form. I will also met with Bryce to talk about styling.
 #### Both:
 - Meet with client for updates and what we can change 
 
-
 ### Week 2 (July 19-23)
 #### Bryce:
-
-#### Kenia:
+- I will be working on the users schedule. Then work on how they only be assigned two days of chores per week.
+#### Kenia: 
+- I will continue styling until Bryce finishes the users schedule and then add the manager check off to that schedule.
 
 #### Both:
-- Start on emailing notifications process for new schedule updates
+- Both work on styling the schedule into more of a calendar view.
 - Meet with client for updates and what we can change
 
 ### Week 3 (July 26-30)
-#### Both:
-- Continue working on emailing for new schedules and also work on notice of missed chore update.
-- 
-- Work on report for the week and scorecard percentages of people who got it done.
+
+#### Bryce: 
+- I will be working on the emailing portion of the project. Where they are notified when there is a new schedule.
+#### Kenia: 
+- I am going to work on emailing if chores are missed for the day and also marking the schedule as missed.
 
 #### Both:
 - Meet with client for updates and what we can change
 
 ### Week 4 (August 2-6)
+#### Bryce:
+- I will be working on the overall group performance on the scorecard.I will work on some styling as well.
+#### Kenia: 
+- I am going to work on the individual and managers score card and any additional css.
 #### Both:
 - We are going to dedicate our time to styling and on the appearance of the web page
 - We are also going to work on the bread crumb trail to make sure navigation through the 
