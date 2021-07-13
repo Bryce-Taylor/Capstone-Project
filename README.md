@@ -4,24 +4,19 @@ We are building a program to generate a weekly chore schedule for the Management
 
 There are 5 different chores which include; kitchen, floors, bathrooms, lobby, and trash. Two people are assigned one chore per day of the week. One user is only able to work two chores per week. Each chore should be checked off by a manager. A manager can only check off 3 chores a week. Users and Managers should be notified both when a new schedule is uploaded and when a chore is not completed. Managers don't do chores.
 
-Each user should have their own unique sign in and information they need is visibility. Every user will be able to sign in and view the whole chore schedule for that week. They also can view that following week with that certain day and the chores highlighted. If needed, a manager can login and can move people manually on the schedule. 
-
-The Email notifications should be sent to the appropriate party that needs information or takes action. If there is a chore that has not been checked off and the chore of that day passed, it should notify the manager and the users who were assigned the chore. The notification should be visible in the system and it should send them all an email. The Chore Management System should send all users an email that has the next week's schedule as soon as it is created.
-
-The scorecard should be created at the end of each week to calculate these performance measures for the just complete weekly activities. It will be showing these categories of the scorecard which are Overall group performance(% chores completed), Individual Performance(% chores completed by individual), Manager performance(% chores signed off on by manager).
-
 ## Prior Art
 The Management Team usually creates all schedules by hand which take time especially if one can 
 not do a particular chore that day. We are creating a similar way of creating those schedules 
-without having to recreate the entire thing. 
+without having to recreate the entire thing. I attempted to look for similar projects for job scheduling but could 
+not find any spring projects.
 ## Core User Workflows
-- Users can create/ login to an account
-- User can sign in and see schedule for this week and following week
-- Users can choose a role either Manger or Worker
-- Workers can create a schedule with the chores they chose.
-- Mangers can edit the schedule
-- Mangers can to check off 3 chores
-- Both users and managers will receive a scorecard with performance percentage
+1. Login - Users can create/ login to an account
+2. Schedules -  User can sign in and see schedule for this week and following week.
+3. Sign Up - Users can choose a role either Manger or Worker at Sign up.
+4. Adjusting Schedules - Mangers can edit the schedule
+5. Managers limitations - Mangers can to check off 3 chores
+6. User limitations - Users can only work 2 days a week
+7. Scorecards - Everyone will receive a scorecard with performance percentage
 ## Weekly Goals
 ### Week 1 (July 12-16)
 #### Bryce:
