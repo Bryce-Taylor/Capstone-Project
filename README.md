@@ -19,17 +19,18 @@ but could not find any web applications in spring.
 
 ## Core User Workflows
 1. Login - Users can create/ login to an account
-2. Sign Up - Users can choose a role either Manager or User at Sign up.
-3. Schedules -  Users can sign in and see the schedule for this week and following week.
-4. Adjusting Schedules - Managers can edit the schedule
-5. Managers limitations - Managers can to check off 3 chores
-6. User limitations - Users can only work 2 days a week
-7. Email - Users will receive an email about the schedule
-8. Scorecards - Everyone will receive a scorecard with performance percentage
+2. Schedules -  Users can sign in and see the schedule for this week and following week.
+   - Managers limitations - Managers can to check off 3 chores
+   - User limitations - Users can only work 2 days a week
+3. Adjusting Schedules - Managers can edit the schedule
+4. Email - Users will receive an email about the schedule
+5. Scorecards - Everyone will receive a scorecard with performance percentage
+6. Create Accounts - Admin can create accounts and decide if they are a manager or an employee
+
 ## Weekly Goals
 ### Week 1 (July 12-16)
 #### Bryce:
-- Login and Signup
+- Login and Signup/ Create Accounts
 - I will be going to work on user authentication where the user can create their account and login to see the schedules. I will be working on the users table to save login information to the database.
   
 - I will be going to set up our home page and add minimal styling.
@@ -42,10 +43,10 @@ form. I will work on making users accounts for schedule. I will also meet with B
 
 ### Week 2 (July 19-23)
 #### Bryce:
-- Schedules(Users) and User limitations
+- Schedules(Users)
 - I will be working on the users schedule. Then work on how they only are assigned two days of chores per week.
 #### Kenia: 
-- Schedules and Manager Limitations
+- Schedules(Management)
 - I will continue styling until Bryce finishes the users schedule and then add the manager check off to that schedule.
 
 #### Both:
