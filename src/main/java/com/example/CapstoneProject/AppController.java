@@ -1,11 +1,14 @@
 package com.example.CapstoneProject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class AppController {
@@ -13,8 +16,32 @@ public class AppController {
     @Autowired
     private UserRepository userRepo;
 
-    @GetMapping("")
-    public String viewHomePage() {
+    @Autowired
+    private CustomUserDetailsService userService;
+
+    @GetMapping(value="")
+    public String viewHomePage(@AuthenticationPrincipal CustomUserDetails userDetails) {
+        List<User> listUser = userService.getAllUsers();
+
+        if (userDetails == null) {
+            return "home";
+        }
+        User user = userDetails.getUser(userDetails.getUsername());
+
+        for (User list:listUser) {
+            if(user.getUserName().equals(list.getUserName()) &&
+                    user.getRole().equals("Admin")){
+                return "home_admin";
+            }
+        }
+
+        for (User list:listUser) {
+            if(user.getUserName().equals(list.getUserName()) &&
+                    user.getRole().equals("Manager")){
+                return "home_manager";
+            }
+        }
+
         return "home";
     }
     @GetMapping("/register")

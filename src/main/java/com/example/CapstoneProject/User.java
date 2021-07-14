@@ -24,8 +24,8 @@ public class User {
     @Column(name = "last_name", nullable = false, length = 20)
     private String lastName;
 
-    @Column(name = "type_of_role", nullable = false)
-    private String typeOfRole;
+    @Column(name = "role", nullable = false)
+    private String role;
 
     public long getId() {
         return id;
@@ -75,12 +75,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getTypeOfRole() {
-        return typeOfRole;
+    public String getRole() {
+        return role;
     }
 
-    public void setTypeOfRole(String typeOfRole) {
-        this.typeOfRole = typeOfRole;
+    public void setRole(String role) {
+        this.role = role;
     }
 }
 
