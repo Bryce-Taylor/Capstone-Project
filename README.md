@@ -19,7 +19,7 @@ but could not find any web applications in spring.
 
 ## Core User Workflows
 1. Login - Users can create/ login to an account
-2. Sign Up - Users can choose a role either Manager or Worker at Sign up.
+2. Sign Up - Users can choose a role either Manager or User at Sign up.
 3. Schedules -  Users can sign in and see the schedule for this week and following week.
 4. Adjusting Schedules - Managers can edit the schedule
 5. Managers limitations - Managers can to check off 3 chores
