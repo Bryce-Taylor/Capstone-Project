@@ -2,7 +2,7 @@ package com.example.CapstoneProject;
 
 import javax.persistence.*;
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
     @Id
@@ -12,7 +12,7 @@ public class User {
     @Column(name = "username", nullable = false, length = 20)
     private String userName;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = false, length = 45)
     private String email;
 
     @Column(nullable = false, length = 64)
