@@ -11,7 +11,7 @@
 <body>
 <div sec:authorize="isAuthenticated()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Home</a>
+        <a class="navbar-brand" href="/">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -36,7 +36,6 @@
 </div>
 <div sec:authorize="isAnonymous()" class="container text-center primary">
     <h1>Welcome to CMS</h1>
-    <h3><a th:href="@{/register}">Register</a></h3>
     <h3><a th:href="@{/login}">Login</a></h3>
 </div>
 

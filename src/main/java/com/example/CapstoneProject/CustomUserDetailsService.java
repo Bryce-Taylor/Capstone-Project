@@ -24,8 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public List<User> getAllUsers(){
-        return userRepo.findAll();
+        return (List<User>) userRepo.findAll();
     }
-
 
 }

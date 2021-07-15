@@ -45,7 +45,6 @@ public class AppController {
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
-
         return "signup_form";
     }
     @PostMapping("/process_register")
@@ -56,5 +55,11 @@ public class AppController {
         userRepo.save(user);
         return "redirect:/";
     }
-
+    @GetMapping("/schedule")
+    public String listUser(Model model) {
+        List<User> listUsers = (List<User>) userRepo.findAll();
+        listUsers.removeIf(user -> !user.getRole().equals("User"));
+        model.addAttribute("listUsers", listUsers);
+        return "schedule";
+    }
 }
