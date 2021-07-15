@@ -86,6 +86,7 @@ but could not find any web applications in spring.
 - Spring Boot
 - Html/CSS
 - Java
+- MySQL
 
 ## GitHub Repository 
 https://github.com/Bryce-Taylor/Capstone-Project

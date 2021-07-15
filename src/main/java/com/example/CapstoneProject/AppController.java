@@ -55,9 +55,8 @@ public class AppController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-
         userRepo.save(user);
-
         return "redirect:/";
     }
+
 }

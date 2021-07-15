@@ -1,6 +1,7 @@
 .view{
 color: gray;
 text-decoration: none;
+padding: 5px;
 }
 .view:hover{
     color: black;
