@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/index.css}" />
     <title>List of Users</title>
 </head>
 <body>
@@ -29,23 +30,19 @@
         </ul>
     </div>
 </nav>
-<table>
-    <thead >
-    <tr>
-        <th>E-mail</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Role</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user: ${listUsers}">
-        <td th:text="${user.email}">E-mail</td>
-        <td th:text="${user.first_name}">First Name</td>
-        <td th:text="${user.last_name}">Last Name</td>
-        <td th:text="${user.role}">Role</td>
-    </tr>
-    </tbody>
-</table>
+<ul>
+    <section th:each="user: ${listUsers}">
+        <div class="card" style="width: 25rem;">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text"  th:text="${user.first_name} + ' ' + ${user.last_name}">Full Name</p>
+                <a href="#" class="card-link mb-2" th:text="${user.email}">Email</a>
+                <p class="card-text"  th:text="${user.first_name} + ' ' + ${user.last_name}">Full Name</p>
+                <a href="#" class="card-link" th:text="${user.email}">Email</a>
+            </div>
+        </div>
+    </section>
+</ul>
 </body>
 </html>

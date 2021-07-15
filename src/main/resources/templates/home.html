@@ -34,10 +34,15 @@
 <h1>User</h1>
 
 </div>
-<div sec:authorize="isAnonymous()" class="container text-center primary">
-    <h1>Welcome to CMS</h1>
-    <h3><a th:href="@{/login}">Login</a></h3>
+<div sec:authorize="isAnonymous()" class=" primary ">
+    <div class="header">
+        <h1 class="title" >Welcome to CMS</h1>
+        <h3><a th:href="@{/login}">Login</a></h3>
+        <div class="info-box">
+            <h1 id="title">Chore Management System</h1>
+            <p class="description">hiiiiiiii </p>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>
