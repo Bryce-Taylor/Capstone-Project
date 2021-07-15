@@ -34,14 +34,12 @@ public class AppController {
                 return "home_admin";
             }
         }
-
         for (User list:listUser) {
             if(user.getUserName().equals(list.getUserName()) &&
                     user.getRole().equals("Manager")){
                 return "home_manager";
             }
         }
-
         return "home";
     }
     @GetMapping("/register")

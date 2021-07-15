@@ -8,3 +8,15 @@ padding: 5px;
     transition: all 0.5s;
     text-decoration: none;
 }
+
+.arrow {
+  border: solid black;
+  border-width: 3px;
+  display: inline-block;
+  padding: 3px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}

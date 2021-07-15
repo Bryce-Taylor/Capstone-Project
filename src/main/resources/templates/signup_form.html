@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="ISO-8859-1">
     <title>Sign Up - CMS</title>
@@ -25,7 +26,7 @@
                         <a class="dropdown-item" href="#">View Schedule</a>
                         <a class="dropdown-item" href="/register">Create New Employee</a>
                         <a class="dropdown-item" href="#">Edit Chores</a>
-                        <a class="nav-a-item a-item view" th:href="@{/logout}">Logout</a>
+                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -34,7 +35,7 @@
 </div>
 <div class="container text-center">
     <div>
-        <h1>User Registration - Sign Up</h1>
+        <h1>Creating New Employee</h1>
     </div>
     <form th:action="@{/process_register}" th:object="${user}"
           method="post" style="max-width: 600px; margin: 0 auto;">
@@ -96,10 +97,10 @@
             <div class="form-group row">
                 <label class="col-4 col-form-label">Role: </label>
                 <div class="col-8">
-                    <input type="radio" id="user" name="typeOfRole" value="User" required>
+                    <input type="radio" id="user" name="role" value="User" required>
                     <label for="User">User</label>
                     <br/>
-                    <input type="radio" id="manger" name="typeOfRole" value="Manger">
+                    <input type="radio" id="manger" name="role" value="Manger">
                     <label for="Manger">Manger</label>
                 </div>
             </div>
