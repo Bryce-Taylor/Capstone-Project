@@ -35,6 +35,7 @@ public class AppController {
         for (User list:listUser) {
             if(user.getUsername().equals(list.getUsername()) &&
                     user.getRole().equals("User")){
+
                 return "home";
             }
         }
@@ -72,7 +73,7 @@ public class AppController {
         model.addAttribute("listUsers", listUsers);
         return "schedule";
     }
-    @GetMapping("/update_password/")
+    @GetMapping("/update_password/{id}")
     public ModelAndView editOrder(@RequestParam Long id) {
         ModelAndView mav =  new ModelAndView("edit_password");
         Optional<User> user = userRepo.findById(id);
@@ -82,7 +83,7 @@ public class AppController {
     @PostMapping("/update_success")
     public String order_info(User newPassword){
         Optional<User> oldUserPass = userRepo.findById(newPassword.getId());
-        if (oldUserPass != null) {
+        if (oldUserPass.isPresent()) {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String encodedPassword = passwordEncoder.encode(newPassword.getPassword());
             newPassword.setPassword(encodedPassword);
