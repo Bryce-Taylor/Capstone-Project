@@ -1,12 +1,14 @@
 package com.example.CapstoneProject;
 
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
+import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    @Query("SELECT u FROM User u WHERE u.userName = ?1")
-    User findByUserName(String userName);
+
+public interface UserRepository extends CrudRepository<User, Long> {
+    @Query("SELECT u FROM User u WHERE u.username = ?1")
+    User findByUsername(String username);
+    public Optional<User> findById(Long id);
 }

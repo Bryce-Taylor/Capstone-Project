@@ -25,7 +25,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUserName();
+        return user.getUsername();
     }
     public User getUser(String username) {
         return user;
@@ -56,5 +56,6 @@ public class CustomUserDetails implements UserDetails {
     public String getFullName() {
         return user.getFirst_name() + " " + user.getLast_name();
     }
+
 
 }

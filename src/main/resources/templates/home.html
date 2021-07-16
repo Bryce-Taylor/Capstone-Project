@@ -24,17 +24,16 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">View Schedule</a>
                         <a class="dropdown-item" href="#">View Chore Descriptions</a>
-                        <a class="dropdown-item" href="#">Change Password</a>
+                        <a class="dropdown-item" th:href="@{/update_password?id={id}(id = ${user.id})}">Change Password</a>
                         <a class="dropdown-item" th:href="@{/logout}">Logout</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
-<h1>User</h1>
 
 </div>
-<div sec:authorize="isAnonymous()" class=" primary ">
+<div sec:authorize="isAnonymous()" class="text-center primary ">
     <div class="header">
         <h1 class="title" >Welcome to CMS</h1>
         <h3><a th:href="@{/login}">Login</a></h3>
