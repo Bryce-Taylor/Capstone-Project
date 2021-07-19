@@ -62,42 +62,22 @@ public class AppController {
         List<User> listUsers = (List<User>) userRepo.findAll();
         listUsers.removeIf(user -> !user.getRole().equals("User"));
         model.addAttribute("listUsers", listUsers);
-        ArrayList userIds = new ArrayList();
-        ArrayList copies= new ArrayList();
+        ArrayList<Long> userIds = new ArrayList<>();
+        ArrayList<Long> copies= new ArrayList<>();
         int count = 0;
         for (int i = count; i < 5; i++){
             for (int j = 0; j < 10; j++) {
-                int number = (int) (Math.random() * (41 - 11 + 1)) + 11;
-                if (Collections.frequency(userIds, number) > 1) {
-                    copies.add(number);
+                double number = (Math.random() * (41 - 11 + 1)) + 11;
+                if (Collections.frequency(userIds,(long) number) > 1) {
+                    copies.add((long) number);
                     j--;
-                } else if (!copies.contains(number)) {
-                    userIds.add(number);
+                } else if (!copies.contains((long) number)) {
+                    userIds.add((long) number);
                     count ++;
                 }
             }
         }
-        System.out.println(copies);
         System.out.println(userIds);
         return "schedule";
     }
-//    @GetMapping("/update_password/{id}")
-//    public ModelAndView editOrder(@RequestParam Long id) {
-//        ModelAndView mav =  new ModelAndView("edit_password");
-//        Optional<User> user = userRepo.findById(id);
-//        mav.addObject("user",user);
-//        return mav;
-//    }
-//    @PostMapping("/update_success")
-//    public String order_info(User newPassword){
-//        Optional<User> oldUserPass = userRepo.findById(newPassword.getId());
-//        if (oldUserPass.isPresent()) {
-//            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//            String encodedPassword = passwordEncoder.encode(newPassword.getPassword());
-//            newPassword.setPassword(encodedPassword);
-//            oldUserPass.get().setPassword(newPassword.getPassword());
-//            userRepo.save(oldUserPass.get());
-//        }
-//        return "redirect:/home";
-//    }
 }
