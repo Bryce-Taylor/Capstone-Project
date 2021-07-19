@@ -6,13 +6,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class AppController {
@@ -24,30 +20,25 @@ public class AppController {
     private CustomUserDetailsService userService;
 
     @GetMapping(value="")
-    public String viewHomePage(@AuthenticationPrincipal CustomUserDetails userDetails) {
+    public String viewHomePage(@AuthenticationPrincipal CustomUserDetails userDetails,Model model) {
         List<User> listUser = userService.getAllUsers();
-
         if (userDetails == null) {
             return "home";
         }
         User user = userDetails.getUser(userDetails.getUsername());
 
         for (User list:listUser) {
-            if(user.getUsername().equals(list.getUsername()) &&
-                    user.getRole().equals("User")){
+            if (user.getUsername().equals(list.getUsername()) &&
+                    user.getRole().equals("User")) {
 
                 return "home";
             }
-        }
-        for (User list:listUser) {
-            if(user.getUsername().equals(list.getUsername()) &&
-                    user.getRole().equals("Admin")){
+            if (user.getUsername().equals(list.getUsername()) &&
+                    user.getRole().equals("Admin")) {
                 return "home_admin";
             }
-        }
-        for (User list:listUser) {
-            if(user.getUsername().equals(list.getUsername()) &&
-                    user.getRole().equals("Manager")){
+            if (user.getUsername().equals(list.getUsername()) &&
+                    user.getRole().equals("Manager")) {
                 return "home_manager";
             }
         }
@@ -71,25 +62,42 @@ public class AppController {
         List<User> listUsers = (List<User>) userRepo.findAll();
         listUsers.removeIf(user -> !user.getRole().equals("User"));
         model.addAttribute("listUsers", listUsers);
+        ArrayList userIds = new ArrayList();
+        ArrayList copies= new ArrayList();
+        int count = 0;
+        for (int i = count; i < 5; i++){
+            for (int j = 0; j < 10; j++) {
+                int number = (int) (Math.random() * (41 - 11 + 1)) + 11;
+                if (Collections.frequency(userIds, number) > 1) {
+                    copies.add(number);
+                    j--;
+                } else if (!copies.contains(number)) {
+                    userIds.add(number);
+                    count ++;
+                }
+            }
+        }
+        System.out.println(copies);
+        System.out.println(userIds);
         return "schedule";
     }
-    @GetMapping("/update_password/{id}")
-    public ModelAndView editOrder(@RequestParam Long id) {
-        ModelAndView mav =  new ModelAndView("edit_password");
-        Optional<User> user = userRepo.findById(id);
-        mav.addObject("user",user);
-        return mav;
-    }
-    @PostMapping("/update_success")
-    public String order_info(User newPassword){
-        Optional<User> oldUserPass = userRepo.findById(newPassword.getId());
-        if (oldUserPass.isPresent()) {
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String encodedPassword = passwordEncoder.encode(newPassword.getPassword());
-            newPassword.setPassword(encodedPassword);
-            oldUserPass.get().setPassword(newPassword.getPassword());
-            userRepo.save(oldUserPass.get());
-        }
-        return "redirect:/home";
-    }
+//    @GetMapping("/update_password/{id}")
+//    public ModelAndView editOrder(@RequestParam Long id) {
+//        ModelAndView mav =  new ModelAndView("edit_password");
+//        Optional<User> user = userRepo.findById(id);
+//        mav.addObject("user",user);
+//        return mav;
+//    }
+//    @PostMapping("/update_success")
+//    public String order_info(User newPassword){
+//        Optional<User> oldUserPass = userRepo.findById(newPassword.getId());
+//        if (oldUserPass.isPresent()) {
+//            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//            String encodedPassword = passwordEncoder.encode(newPassword.getPassword());
+//            newPassword.setPassword(encodedPassword);
+//            oldUserPass.get().setPassword(newPassword.getPassword());
+//            userRepo.save(oldUserPass.get());
+//        }
+//        return "redirect:/home";
+//    }
 }

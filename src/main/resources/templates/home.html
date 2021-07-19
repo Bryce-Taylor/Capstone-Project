@@ -24,11 +24,13 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">View Schedule</a>
                         <a class="dropdown-item" href="#">View Chore Descriptions</a>
-                        <a class="dropdown-item" href="#">Change Password</a>
+                        <a class="dropdown-item" th:href="@{'/update_password/'+ ${user.id}}">Change Password</a>
                         <a class="dropdown-item" th:href="@{/logout}">Logout</a>
                     </div>
                 </li>
             </ul>
+
+
         </div>
     </nav>
 <h1>User</h1>
