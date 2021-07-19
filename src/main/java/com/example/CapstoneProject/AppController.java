@@ -77,6 +77,13 @@ public class AppController {
                 }
             }
         }
+        for(Long id : userIds){
+            for (User user : listUsers) {
+                if (id.equals(user.getId())) {
+                    System.out.println(user.getFullName() + id +" "+ user.getId());
+                }
+            }
+        }
         System.out.println(userIds);
         return "schedule";
     }
