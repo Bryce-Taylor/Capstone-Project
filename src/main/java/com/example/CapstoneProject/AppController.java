@@ -94,11 +94,23 @@ public class AppController {
             }
         }
         ArrayList<Chores> chores = (ArrayList<Chores>) choresRepo.findAll();
-        for (Chores chore : chores) {
-            for (User user : userInfo) {
-                System.out.println(user.getFullName() + " " + chore.getChore());
-
+        int choreCount= 0;
+        int day = 0;
+        int i= 0;
+        while (day!= 5){
+            for (i = 0; i < 5; i++) {
+                for (User user : userInfo) {
+                    if (choreCount != 2 && i < 5){
+                        System.out.println(user.getFullName() + " " + chores.get(i).getChore());
+                        choreCount++;
+                    }else{
+                        choreCount=0;
+                        i++;
+                    }
+                }
             }
+            System.out.println("Day: "+ i);
+            day++;
         }
         model.addAttribute("userInfo", userInfo);
         return "schedule";
