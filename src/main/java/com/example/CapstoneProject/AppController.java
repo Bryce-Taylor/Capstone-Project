@@ -33,7 +33,8 @@ public class AppController {
             return "home";
         }
         User user = userDetails.getUser(userDetails.getUsername());
-
+        List<Schedule> currentSchedule= (List<Schedule>) scheduleRepo.findAll();
+        model.addAttribute("currentSchedule", currentSchedule);
         for (User list:listUser) {
             if (user.getUsername().equals(list.getUsername()) &&
                     user.getRole().equals("User")) {
@@ -75,10 +76,9 @@ public class AppController {
         ArrayList<Chores> chores = (ArrayList<Chores>) choresRepo.findAll();
         int day = 1;
         int count = 0;
-
         for (int i = count; i < 5; i++) {
             for (int j = 0; j < 10; j++) {
-                double number = (Math.random() * (41 - 11 + 1)) + 11;
+                double number = (Math.random() * (listUsers.get(listUsers.size() - 1).getId() - listUsers.get(0).getId() + 1)) + listUsers.get(0).getId();
                 if (Collections.frequency(userIds, (long) number) > 1) {
                     copies.add((long) number);
                     j--;
@@ -103,9 +103,9 @@ public class AppController {
         int k = 0 ;
         Schedule newSchedule = new Schedule();
         while (day != 6) {
-            for (i = 0; i < 5; i++) {
+            for (i = 0; i < chores.size(); i++) {
                 for (j = k; j < userInfo.size(); j++) {
-                    if (choreCount != 2 && i < 5) {
+                    if (choreCount != 2 && i < chores.size()) {
                         System.out.println(userInfo.get(j).getFullName() + " " + chores.get(i).getChore());
                         newSchedule.setId(userInfo.get(k).getId());
                         newSchedule.setUser(userInfo.get(j).getFullName());
@@ -113,6 +113,8 @@ public class AppController {
                         newSchedule.setWeek(1);
                         newSchedule.setDay(day);
                         newSchedule.setManager("Kenia");
+                        newSchedule.setUser_checked(false);
+                        newSchedule.setMan_checked(false);
                         scheduleRepo.save(newSchedule);
                         choreCount++;
                         k++;
