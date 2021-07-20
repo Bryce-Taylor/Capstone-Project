@@ -16,7 +16,7 @@ public class Schedule {
     private String chore;
 
     @Column(name="day", nullable = false, length = 3)
-    private String day;
+    private int day;
 
     @Column(name="user", nullable = false, length = 100)
     private String user;
@@ -48,11 +48,11 @@ public class Schedule {
         this.chore = chore;
     }
 
-    public String getDay() {
+    public int getDay() {
         return day;
     }
 
-    public void setDay(String day) {
+    public void setDay(int day) {
         this.day = day;
     }
 

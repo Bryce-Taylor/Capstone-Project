@@ -65,54 +65,68 @@ public class AppController {
         return "redirect:/";
     }
     @GetMapping("/schedule")
-    public String listUser(Model model) {
+    public String listUser(Model model ) {
         List<User> listUsers = (List<User>) userRepo.findAll();
         listUsers.removeIf(user -> !user.getRole().equals("User"));
         model.addAttribute("listUsers", listUsers);
         ArrayList<Long> userIds = new ArrayList<>();
         ArrayList<Long> copies= new ArrayList<>();
         List<User> userInfo = new ArrayList<>();
+        ArrayList<Chores> chores = (ArrayList<Chores>) choresRepo.findAll();
+        int day = 1;
         int count = 0;
-        for (int i = count; i < 5; i++){
+
+        for (int i = count; i < 5; i++) {
             for (int j = 0; j < 10; j++) {
                 double number = (Math.random() * (41 - 11 + 1)) + 11;
-                if (Collections.frequency(userIds,(long) number) > 1) {
+                if (Collections.frequency(userIds, (long) number) > 1) {
                     copies.add((long) number);
                     j--;
                 } else if (!copies.contains((long) number)) {
                     userIds.add((long) number);
-                    count ++;
+                    count++;
                 }
             }
         }
-        for(Long id : userIds){
+        for (Long id : userIds) {
             for (User user : listUsers) {
-                if (id.equals(user.getId())){
+                if (id.equals(user.getId())) {
                     Optional<User> userInfomation = userRepo.findById(id);
                     userInfo.add((userInfomation.get()));
                 }
             }
         }
-        ArrayList<Chores> chores = (ArrayList<Chores>) choresRepo.findAll();
-        int choreCount= 0;
-        int day = 0;
-        int i= 0;
-        while (day!= 5){
+
+        int choreCount = 0;
+        int i = 0;
+        int j = 0;
+        int k = 0 ;
+        Schedule newSchedule = new Schedule();
+        while (day != 6) {
             for (i = 0; i < 5; i++) {
-                for (User user : userInfo) {
-                    if (choreCount != 2 && i < 5){
-                        System.out.println(user.getFullName() + " " + chores.get(i).getChore());
+                for (j = k; j < userInfo.size(); j++) {
+                    if (choreCount != 2 && i < 5) {
+                        System.out.println(userInfo.get(j).getFullName() + " " + chores.get(i).getChore());
+                        newSchedule.setId(userInfo.get(k).getId());
+                        newSchedule.setUser(userInfo.get(j).getFullName());
+                        newSchedule.setChore(chores.get(i).getChore());
+                        newSchedule.setWeek(1);
+                        newSchedule.setDay(day);
+                        newSchedule.setManager("Kenia");
+                        scheduleRepo.save(newSchedule);
                         choreCount++;
-                    }else{
-                        choreCount=0;
+                        k++;
+                    } else if(choreCount== 2) {
+                        choreCount = 0;
                         i++;
+                        j--;
                     }
                 }
             }
-            System.out.println("Day: "+ i);
             day++;
         }
-        model.addAttribute("userInfo", userInfo);
+        List<Schedule> currentSchedule= (List<Schedule>) scheduleRepo.findAll();
+        model.addAttribute("currentSchedule", currentSchedule);
         return "schedule";
     }
 }
