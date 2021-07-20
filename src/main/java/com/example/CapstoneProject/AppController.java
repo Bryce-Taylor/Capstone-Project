@@ -17,6 +17,13 @@ public class AppController {
     private UserRepository userRepo;
 
     @Autowired
+    private ChoresRepository choresRepo;
+
+    @Autowired
+    private ScheduleRepository scheduleRepo;
+
+    private Schedule schedule;
+    @Autowired
     private CustomUserDetailsService userService;
 
     @GetMapping(value="")
@@ -64,6 +71,7 @@ public class AppController {
         model.addAttribute("listUsers", listUsers);
         ArrayList<Long> userIds = new ArrayList<>();
         ArrayList<Long> copies= new ArrayList<>();
+        List<User> userInfo = new ArrayList<>();
         int count = 0;
         for (int i = count; i < 5; i++){
             for (int j = 0; j < 10; j++) {
@@ -79,12 +87,20 @@ public class AppController {
         }
         for(Long id : userIds){
             for (User user : listUsers) {
-                if (id.equals(user.getId())) {
-                    System.out.println(user.getFullName() + id +" "+ user.getId());
+                if (id.equals(user.getId())){
+                    Optional<User> userInfomation = userRepo.findById(id);
+                    userInfo.add((userInfomation.get()));
                 }
             }
         }
-        System.out.println(userIds);
+        ArrayList<Chores> chores = (ArrayList<Chores>) choresRepo.findAll();
+        for (Chores chore : chores) {
+            for (User user : userInfo) {
+                System.out.println(user.getFullName() + " " + chore.getChore());
+
+            }
+        }
+        model.addAttribute("userInfo", userInfo);
         return "schedule";
     }
 }

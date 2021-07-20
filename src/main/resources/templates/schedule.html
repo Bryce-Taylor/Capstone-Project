@@ -31,16 +31,15 @@
     </div>
 </nav>
 <div>
-<ul class="schedule-grid">
-    <section th:each="user: ${listUsers}">
-        <div class="card" style="width: 25rem;">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+<ul class="schedule-grid " style="padding-top: 30px;">
+
+    <section th:each="user: ${userInfo}">
+        <div class="card" style="width: 30rem;">
+            <div class="card-body ">
+                <h5 class="card-title">Week 1</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Chore</h6>
                 <p class="card-text"  th:text="${user.first_name} + ' ' + ${user.last_name}">Full Name</p>
                 <a href="#" class="card-link mb-2" th:text="${user.email}">Email</a>
-                <p class="card-text"  th:text="${user.first_name} + ' ' + ${user.last_name}">Full Name</p>
-                <a href="#" class="card-link" th:text="${user.email}">Email</a>
             </div>
         </div>
     </section>
