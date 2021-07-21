@@ -6,7 +6,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 
@@ -26,16 +29,16 @@ public class AppController {
     @Autowired
     private CustomUserDetailsService userService;
 
-    @GetMapping(value="")
-    public String viewHomePage(@AuthenticationPrincipal CustomUserDetails userDetails,Model model) {
+    @GetMapping(value = "")
+    public String viewHomePage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
         List<User> listUser = userService.getAllUsers();
         if (userDetails == null) {
             return "home";
         }
         User user = userDetails.getUser(userDetails.getUsername());
-        List<Schedule> currentSchedule= (List<Schedule>) scheduleRepo.findAll();
+        List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
         model.addAttribute("currentSchedule", currentSchedule);
-        for (User list:listUser) {
+        for (User list : listUser) {
             if (user.getUsername().equals(list.getUsername()) &&
                     user.getRole().equals("User")) {
 
@@ -52,11 +55,13 @@ public class AppController {
         }
         return "home";
     }
+
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
         return "signup_form";
     }
+
     @PostMapping("/process_register")
     public String processRegister(User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -65,34 +70,40 @@ public class AppController {
         userRepo.save(user);
         return "redirect:/";
     }
+
+    @GetMapping("/new-schedule")
+    public String newSchedule() {
+        return "new-schedule";
+    }
+
     @GetMapping("/schedule")
-    public String listUser(Model model ) {
+    public String listUser(Model model, @RequestParam int week) {
         List<User> listUsers = (List<User>) userRepo.findAll();
         listUsers.removeIf(user -> !user.getRole().equals("User"));
         model.addAttribute("listUsers", listUsers);
         ArrayList<Long> userIds = new ArrayList<>();
-        ArrayList<Long> copies= new ArrayList<>();
+        ArrayList<Long> copies = new ArrayList<>();
         List<User> userInfo = new ArrayList<>();
         ArrayList<Chores> chores = (ArrayList<Chores>) choresRepo.findAll();
         int day = 1;
         int count = 0;
-        for (int i = count; i < 5; i++) {
-            for (int j = 0; j < 10; j++) {
-                double number = (Math.random() * (listUsers.get(listUsers.size() - 1).getId() - listUsers.get(0).getId() + 1)) + listUsers.get(0).getId();
-                if (Collections.frequency(userIds, (long) number) > 1) {
-                    copies.add((long) number);
-                    j--;
-                } else if (!copies.contains((long) number)) {
-                    userIds.add((long) number);
-                    count++;
-                }
+        while (count != 50) {
+            double number = (Math.random() * (listUsers.get(listUsers.size() - 1).getId() - listUsers.get(0).getId() + 1)) + listUsers.get(0).getId();
+            if (Collections.frequency(userIds, (long) number) > 1) {
+                copies.add((long) number);
+            } else if (!copies.contains((long) number)) {
+                userIds.add((long) number);
+                count++;
             }
         }
+        System.out.println(userIds.size());
         for (Long id : userIds) {
             for (User user : listUsers) {
                 if (id.equals(user.getId())) {
                     Optional<User> userInfomation = userRepo.findById(id);
-                    userInfo.add((userInfomation.get()));
+                    if (userInfomation.isPresent()) {
+                        userInfo.add((userInfomation.get()));
+                    }
                 }
             }
         }
@@ -100,25 +111,24 @@ public class AppController {
         int choreCount = 0;
         int i = 0;
         int j = 0;
-        int k = 0 ;
+        int k = 0;
         Schedule newSchedule = new Schedule();
         while (day != 6) {
             for (i = 0; i < chores.size(); i++) {
                 for (j = k; j < userInfo.size(); j++) {
                     if (choreCount != 2 && i < chores.size()) {
-                        System.out.println(userInfo.get(j).getFullName() + " " + chores.get(i).getChore());
                         newSchedule.setId(userInfo.get(k).getId());
                         newSchedule.setUser(userInfo.get(j).getFullName());
                         newSchedule.setChore(chores.get(i).getChore());
-                        newSchedule.setWeek(1);
+                        newSchedule.setWeek(week);
                         newSchedule.setDay(day);
-                        newSchedule.setManager("Kenia");
+                        newSchedule.setManager("Bryce");
                         newSchedule.setUser_checked(false);
                         newSchedule.setMan_checked(false);
                         scheduleRepo.save(newSchedule);
                         choreCount++;
                         k++;
-                    } else if(choreCount== 2) {
+                    } else if (choreCount == 2) {
                         choreCount = 0;
                         i++;
                         j--;
@@ -127,8 +137,39 @@ public class AppController {
             }
             day++;
         }
-        List<Schedule> currentSchedule= (List<Schedule>) scheduleRepo.findAll();
+        List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findByWeek(week);
         model.addAttribute("currentSchedule", currentSchedule);
         return "schedule";
+    }
+
+    @GetMapping("/chores")
+    public String chores(Model model) {
+        List<Chores> chores = (List<Chores>) choresRepo.findAll();
+        model.addAttribute("chores", chores);
+        return "chores";
+    }
+    @GetMapping("/choreslist")
+    public String choreslist(Model model) {
+        List<Chores> chores = (List<Chores>) choresRepo.findAll();
+        model.addAttribute("chores", chores);
+        return "choreslist";
+    }
+    @GetMapping("/chore/{id}")
+    public ModelAndView editChore(@PathVariable(name ="id")Long id) {
+        ModelAndView mav =  new ModelAndView("edit-chore");
+        Optional<Chores> chore = choresRepo.findById(id);
+        mav.addObject("chore", chore);
+        return mav;
+    }
+    @PostMapping("/edit-chore")
+    public String editChore(Chores chore){
+        Optional<Chores> oldChore = choresRepo.findById(chore.getId());
+        System.out.println(chore.getId());
+        if (oldChore != null) {
+            oldChore.get().setChore(chore.getChore());
+            oldChore.get().setDescription(chore.getDescription());
+            choresRepo.save(oldChore.get());
+        }
+        return "redirect:/choreslist";
     }
 }

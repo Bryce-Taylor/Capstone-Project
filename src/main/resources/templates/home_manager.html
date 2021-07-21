@@ -19,9 +19,6 @@
             <a class="dropdown-item" href="/">Change Password</a>
             <a class="nav-a-item a-item view" th:href="@{/logout}">Logout</a>
         </div>
-        <p class="welcome text-primary"th:text="${'Hello, ' + schedule.user}">
-            Name
-        </p>
     </nav>
     <h1>Manager</h1>
 </div>
@@ -31,18 +28,68 @@
     <h3><a th:href="@{/login}">Login</a></h3>
 </div>
 <div>
+    <h1> </h1>
     <ul class="schedule-grid " style="padding-top: 30px;">
-        <section th:each="schedule: ${currentSchedule}">
-            <div class="card" style="width: 30rem;">
-                <div class="card-body ">
-                    <h5 class="card-title" th:text="${'Week: ' + schedule.week}">Week 1</h5>
-                    <h6 class="card-subtitle mb-2 text-muted" th:text="${'Chore: ' + schedule.chore}">Chore</h6>
-                    <h6 class="card-subtitle mb-2 text-muted" th:text="${'Day of week: ' + schedule.day}">Day</h6>
-                    <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                    <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
-                </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body ">
+                <h5 class="card-title">Monday</h5>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div th:if="${schedule.day == 1}">
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${'Chore: ' + schedule.chore}">Chore</h6>
+                        <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                        <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                    </div>
+                </section>
             </div>
-        </section>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body ">
+                <h5 class="card-title">Tuesday</h5>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div th:if="${schedule.day == 2}">
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${'Chore: ' + schedule.chore}">Chore</h6>
+                        <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                        <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body ">
+                <h5 class="card-title">Wednesday</h5>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div th:if="${schedule.day == 3}">
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${'Chore: ' + schedule.chore}">Chore</h6>
+                        <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                        <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body ">
+                <h5 class="card-title">Thursday</h5>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div th:if="${schedule.day == 4}">
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${'Chore: ' + schedule.chore}">Chore</h6>
+                        <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                        <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body ">
+                <h5 class="card-title">Friday</h5>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div th:if="${schedule.day == 5}">
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${'Chore: ' + schedule.chore}">Chore</h6>
+                        <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                        <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                    </div>
+                </section>
+            </div>
+        </div>
     </ul>
 </div>
 </body>

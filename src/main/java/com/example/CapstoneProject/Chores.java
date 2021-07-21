@@ -10,6 +10,9 @@ public class Chores {
     @Column(name="chore", nullable = false, length = 100)
     private String chore;
 
+    @Column(name="description", nullable = true, length = 100)
+    private String description;
+
     public long getId() {
         return id;
     }
@@ -24,5 +27,13 @@ public class Chores {
 
     public void setChore(String chore) {
         this.chore = chore;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

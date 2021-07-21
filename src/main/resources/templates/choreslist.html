@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:td="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Chores</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" th:href="@{/index.css}" />
+</head>
+<body>
+<div>
+  <h1>Admin chores</h1>
+  <ul class="schedule-grid " style="padding-top: 50px;">
+    <section th:each="chores: ${chores}">
+      <div class="card" style="width: 35rem;">
+        <div class="card-body ">
+          <h5 class="card-title" th:text="${'Chore: ' + chores.chore}">Chore</h5>
+          <p class="card-text"  th:text="${'Description: ' + chores.description}">Description</p>
+          <a th:href="@{'/chore/' + ${chores.id}}">Edit</a>
+        </div>
+      </div>
+    </section>
+  </ul>
+</div>
+</body>
+</html>

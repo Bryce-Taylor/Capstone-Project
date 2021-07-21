@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Make New Schedule</title>
+</head>
+<body>
+<form th:action="@{/schedule}" method="GET" >
+    <h3>Enter week number for new Schedule</h3>
+    <input type="number" name="week" />
+    <button type="submit" class="btn">Make Schedule</button>
+</form>
+</body>
+</html>

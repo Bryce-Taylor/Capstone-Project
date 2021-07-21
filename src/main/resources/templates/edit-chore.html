@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Chore</title>
+</head>
+<body>
+<form class="form" th:action="@{/edit-chore}" th:object="${chore}" method="post">
+    <div class="form__group">
+        <p> Chore </p>
+        <input type="text" class="form__input" th:field="*{chore}"
+               required/>
+    </div>
+    <div class="form__group">
+        <p> Description </p>
+        <input type="text" class="form__input" th:field="*{description}"
+               required/>
+    </div>
+    <button type="submit" class="btn">Submit</button>
+</form>
+</body>
+</html>
