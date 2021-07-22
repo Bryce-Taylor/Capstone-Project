@@ -21,6 +21,9 @@ public class Schedule {
     @Column(name="user", nullable = false, length = 100)
     private String user;
 
+    @Column(name = "username", nullable = false, length = 20)
+    private String username;
+
     @Column(name="manager", nullable = false, length = 100)
     private String manager;
 
@@ -82,8 +85,9 @@ public class Schedule {
         return user_checked;
     }
 
-    public void setUser_checked(boolean user_checked) {
-        this.user_checked = user_checked;
+    public boolean setUser_checked(boolean user_checked) {
+
+        return  this.user_checked = user_checked;
     }
 
     public boolean isMan_checked() {
@@ -92,5 +96,13 @@ public class Schedule {
 
     public void setMan_checked(boolean man_checked) {
         this.man_checked = man_checked;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

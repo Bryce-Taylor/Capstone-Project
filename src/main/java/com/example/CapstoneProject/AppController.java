@@ -1,16 +1,15 @@
 package com.example.CapstoneProject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.websocket.server.PathParam;
 import java.util.*;
 
 @Controller
@@ -96,7 +95,6 @@ public class AppController {
                 count++;
             }
         }
-        System.out.println(userIds.size());
         for (Long id : userIds) {
             for (User user : listUsers) {
                 if (id.equals(user.getId())) {
@@ -119,6 +117,7 @@ public class AppController {
                     if (choreCount != 2 && i < chores.size()) {
                         newSchedule.setId(userInfo.get(k).getId());
                         newSchedule.setUser(userInfo.get(j).getFullName());
+                        newSchedule.setUsername(userInfo.get(j).getUsername());
                         newSchedule.setChore(chores.get(i).getChore());
                         newSchedule.setWeek(week);
                         newSchedule.setDay(day);
@@ -171,5 +170,24 @@ public class AppController {
             choresRepo.save(oldChore.get());
         }
         return "redirect:/choreslist";
+    }
+    @GetMapping("/user")
+    public String userProfile(Model model, @AuthenticationPrincipal CustomUserDetails userDetail){
+        List<Schedule> user = (List<Schedule>) scheduleRepo.findUserByUsername(userDetail.getUsername());
+        model.addAttribute("user", user);
+        return "user";
+    }
+    @GetMapping("/check-off/{id}")
+    public String checkedOff(@PathVariable(name ="id")Long id){
+        Optional<Schedule> chore = scheduleRepo.findChoreById(id);
+        Schedule c = chore.get();
+        if (!c.isUser_checked()){
+            c.setUser_checked(true);
+        }else if(c.isUser_checked()){
+            c.setUser_checked(false);
+        }
+
+        scheduleRepo.save(c);
+        return "redirect:/user";
     }
 }
