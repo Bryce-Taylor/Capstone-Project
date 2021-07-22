@@ -161,9 +161,8 @@ public class AppController {
         return mav;
     }
     @PostMapping("/edit-chore")
-    public String editChore(Chores chore){
-        Optional<Chores> oldChore = choresRepo.findById(chore.getId());
-        System.out.println(chore.getId());
+    public String editChore(Chores chore, @PathParam(value="id")Long id){
+        Optional<Chores> oldChore = choresRepo.findById(id);
         if (oldChore != null) {
             oldChore.get().setChore(chore.getChore());
             oldChore.get().setDescription(chore.getDescription());

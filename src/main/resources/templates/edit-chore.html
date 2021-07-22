@@ -16,7 +16,7 @@
         <input type="text" class="form__input" th:field="*{description}"
                required/>
     </div>
-    <button type="submit" class="btn">Submit</button>
+    <button th:name="id" th:value="${id}" type="submit" class="btn btn-primary">Update</button>
 </form>
 </body>
 </html>
