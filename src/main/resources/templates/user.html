@@ -48,7 +48,7 @@
               <a class="btn btn-primary" th:href="@{'/check-off/' + ${schedule.id}}">Check-off chore</a>
         </div>
           <div th:if="${schedule.user_checked ==  true}">
-            <a class="btn btn-primary" th:href="@{'/check-off/' + ${schedule.id}}">Uncheck chore</a>
+            <a class="btn btn-danger" th:href="@{'/check-off/' + ${schedule.id}}">Uncheck chore</a>
           </div>
       </div>
       </div>

@@ -27,6 +27,9 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role;
 
+    @Column(name = "reset_password_token", nullable = false)
+    private String reset_password_token;
+
 
     public long getId() {
         return id;
@@ -88,8 +91,13 @@ public class User {
         return this.getFirst_name() + " " + this.getLast_name();
     }
 
+    public String getReset_password_token() {
+        return reset_password_token;
+    }
 
-
+    public void setReset_password_token(String reset_password_token) {
+        this.reset_password_token = reset_password_token;
+    }
 }
 
 
