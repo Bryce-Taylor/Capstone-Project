@@ -48,12 +48,12 @@ public class AppController {
         User user = userDetails.getUser(userDetails.getUsername());
         LocalDate today = LocalDate.now();
         List<Schedule> currSchedule = (List<Schedule>) scheduleRepo.findAll();
-        if (today.isAfter(currSchedule.get(0).getEnd_date())){
+        if (today.isAfter(currSchedule.get(0).getEnd_date())||  currSchedule.size() == 0){
             scheduleRepo.deleteAll();
             makeSchedule();
             List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
             model.addAttribute("currentSchedule", currentSchedule);
-        }else {
+        } else {
             List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
             model.addAttribute("currentSchedule", currentSchedule);
         }
@@ -153,15 +153,48 @@ public class AppController {
                             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
                             LocalDate friday = LocalDate.now();
                             LocalDate monday = friday.plus(2, ChronoUnit.DAYS);
-                            LocalDate nextFriday =  monday.plus(11, ChronoUnit.DAYS);
-                            newSchedule.setDate_made(monday);
+                            LocalDate nextFriday =  friday.plus(11, ChronoUnit.DAYS);
+                            newSchedule.setStart_date(friday);
                             newSchedule.setEnd_date(nextFriday);
                             newSchedule.setId(userInfo.get(j).getId());
                             newSchedule.setUser(userInfo.get(j).getFullName());
                             newSchedule.setUsername(userInfo.get(j).getUsername());
                             newSchedule.setChore(chores.get(i).getChore());
                             newSchedule.setWeek(week);
-                            newSchedule.setDay(day);
+                            if (week == 1 && day == 1){
+                                newSchedule.setDay(friday);
+                            }else if (week == 1 && day == 2){
+                                LocalDate nextDay =  friday.plus(1, ChronoUnit.DAYS);
+                                newSchedule.setDay(nextDay);
+                            }
+                            else if (week == 1 && day == 3){
+                                LocalDate nextDay =  friday.plus(2, ChronoUnit.DAYS);
+                                newSchedule.setDay(nextDay);
+                            }
+                            else if (week == 1 && day == 4){
+                                LocalDate nextDay =  friday.plus(3, ChronoUnit.DAYS);
+                                newSchedule.setDay(nextDay);
+                            }else if (week == 1 && day == 5){
+                                LocalDate nextDay =  friday.plus(4, ChronoUnit.DAYS);
+                                newSchedule.setDay(nextDay);
+                            }else if (week == 2 && day == 1){
+                                LocalDate nextDay =  friday.plus(7, ChronoUnit.DAYS);
+                                newSchedule.setDay(nextDay);
+                            }else if (week == 2 && day == 2){
+                                LocalDate nextDay =  friday.plus(8, ChronoUnit.DAYS);
+                                newSchedule.setDay(nextDay);
+                            }
+                            else if (week == 2 && day == 3){
+                                LocalDate nextDay =  friday.plus(9, ChronoUnit.DAYS);
+                                newSchedule.setDay(nextDay);
+                            }
+                            else if (week == 2 && day == 4){
+                                LocalDate nextDay =  friday.plus(10, ChronoUnit.DAYS);
+                                newSchedule.setDay(nextDay);
+                            }else if (week == 2 && day == 5){
+                                LocalDate nextDay =  friday.plus(11, ChronoUnit.DAYS);
+                                newSchedule.setDay(nextDay);
+                            }
                             newSchedule.setManager("Bryce");
                             newSchedule.setUser_checked(false);
                             newSchedule.setMan_checked(false);
@@ -182,7 +215,6 @@ public class AppController {
         List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
         return "currentSchedule";
     }
-
     @GetMapping("/chores")
     public String chores(Model model) {
         List<Chores> chores = (List<Chores>) choresRepo.findAll();
@@ -224,8 +256,11 @@ public class AppController {
         Schedule c = chore.get();
         if (!c.isUser_checked()){
             c.setUser_checked(true);
+            LocalDateTime time = LocalDateTime.now();
+            c.setUser_checkoff_time(time);
         }else if(c.isUser_checked()){
             c.setUser_checked(false);
+            c.setUser_checkoff_time(null);
         }
 
         scheduleRepo.save(c);

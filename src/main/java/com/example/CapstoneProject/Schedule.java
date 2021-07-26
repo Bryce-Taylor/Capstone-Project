@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "schedule")
@@ -19,8 +20,9 @@ public class Schedule {
     @Column(name="chore", nullable = false, length = 100)
     private String chore;
 
-    @Column(name="day", nullable = false, length = 3)
-    private int day;
+    @Column(name="day")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDate day;
 
     @Column(name="user", nullable = false, length = 100)
     private String user;
@@ -37,13 +39,21 @@ public class Schedule {
     @Column(name="man_checked", nullable = false, length = 100)
     private boolean man_checked;
 
-    @Column(name="date_made")
+    @Column(name="start_date")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDate date_made;
+    private LocalDate start_date;
 
     @Column(name="end_date")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDate end_date;
+
+    @Column(name="user_checkoff_time")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime user_checkoff_time;
+
+    @Column(name="man_checkoff_time")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime man_checkoff_time;
 
     public long getId() {
         return id;
@@ -69,11 +79,11 @@ public class Schedule {
         this.chore = chore;
     }
 
-    public int getDay() {
+    public LocalDate getDay() {
         return day;
     }
 
-    public void setDay(int day) {
+    public void setDay(LocalDate day) {
         this.day = day;
     }
 
@@ -118,12 +128,12 @@ public class Schedule {
         this.username = username;
     }
 
-    public LocalDate getDate_made() {
-        return date_made;
+    public LocalDate getStart_date() {
+        return start_date;
     }
 
-    public void setDate_made(LocalDate date_made) {
-        this.date_made = date_made;
+    public void setStart_date(LocalDate start_date) {
+        this.start_date = start_date;
     }
 
     public LocalDate getEnd_date() {
@@ -132,5 +142,21 @@ public class Schedule {
 
     public void setEnd_date(LocalDate end_date) {
         this.end_date = end_date;
+    }
+
+    public LocalDateTime getUser_checkoff_time() {
+        return user_checkoff_time;
+    }
+
+    public void setUser_checkoff_time(LocalDateTime user_checkoff_time) {
+        this.user_checkoff_time = user_checkoff_time;
+    }
+
+    public LocalDateTime getMan_checkoff_time() {
+        return man_checkoff_time;
+    }
+
+    public void setMan_checkoff_time(LocalDateTime man_checkoff_time) {
+        this.man_checkoff_time = man_checkoff_time;
     }
 }
