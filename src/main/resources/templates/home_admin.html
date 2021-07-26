@@ -19,10 +19,9 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Options
+                        Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/new-schedule}">Make New Schedule</a>
                         <a class="dropdown-item" th:href="@{/choreslist}">Chores</a>
                         <a class="dropdown-item" th:href="@{/register}">Create New Employee</a>
                         <a class="dropdown-item" th:href="@{/logout}">Logout</a>
@@ -53,26 +52,31 @@
                             <div th:if="${schedule.chore == 'Kitchen'}">
                                 <h6 class="text-primary">Kitchen</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Floors'}">
                                 <h6 class="text-primary">Floors</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Bathrooms'}">
                                 <h6 class="text-primary">Bathrooms</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Lobby'}">
                                 <h6 class="text-primary">Lobby</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Trash'}">
                                 <h6 class="text-primary">Trash</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                         </div>
@@ -90,26 +94,31 @@
                             <div th:if="${schedule.chore == 'Kitchen'}">
                                 <h6 class="text-primary">Kitchen</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Floors'}">
                                 <h6 class="text-primary">Floors</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Bathrooms'}">
                                 <h6 class="text-primary">Bathrooms</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Lobby'}">
                                 <h6 class="text-primary">Lobby</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Trash'}">
                                 <h6 class="text-primary">Trash</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                         </div>
@@ -127,26 +136,31 @@
                             <div th:if="${schedule.chore == 'Kitchen'}">
                                 <h6 class="text-primary">Kitchen</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Floors'}">
                                 <h6 class="text-primary">Floors</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Bathrooms'}">
                                 <h6 class="text-primary">Bathrooms</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Lobby'}">
                                 <h6 class="text-primary">Lobby</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Trash'}">
                                 <h6 class="text-primary">Trash</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                         </div>
@@ -163,26 +177,31 @@
                             <div th:if="${schedule.chore == 'Kitchen'}">
                                 <h6 class="text-primary">Kitchen</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Floors'}">
                                 <h6 class="text-primary">Floors</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Bathrooms'}">
                                 <h6 class="text-primary">Bathrooms</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Lobby'}">
                                 <h6 class="text-primary">Lobby</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Trash'}">
                                 <h6 class="text-primary">Trash</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                         </div>
@@ -200,26 +219,245 @@
                             <div th:if="${schedule.chore == 'Kitchen'}">
                                 <h6 class="text-primary">Kitchen</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Floors'}">
                                 <h6 class="text-primary">Floors</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Bathrooms'}">
                                 <h6 class="text-primary">Bathrooms</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Lobby'}">
                                 <h6 class="text-primary">Lobby</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                             <div th:if="${schedule.chore == 'Trash'}">
                                 <h6 class="text-primary">Trash</h6>
                                 <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </ul>
+</div>
+<div>
+    <h1> </h1>
+    <ul class="schedule-grid " style="padding-top: 30px;">
+        <div class="card" style="width: 15rem;">
+            <div class="card-body ">
+                <h5 class="card-title">Monday</h5>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div th:if="${schedule.week == 2}">
+                        <div th:if="${schedule.day == 1}">
+                            <div th:if="${schedule.chore == 'Kitchen'}">
+                                <h6 class="text-primary">Kitchen</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Floors'}">
+                                <h6 class="text-primary">Floors</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Bathrooms'}">
+                                <h6 class="text-primary">Bathrooms</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Lobby'}">
+                                <h6 class="text-primary">Lobby</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Trash'}">
+                                <h6 class="text-primary">Trash</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body ">
+                <h5 class="card-title">Tuesday</h5>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div th:if="${schedule.week == 2}">
+                        <div th:if="${schedule.day == 2}">
+                            <div th:if="${schedule.chore == 'Kitchen'}">
+                                <h6 class="text-primary">Kitchen</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Floors'}">
+                                <h6 class="text-primary">Floors</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Bathrooms'}">
+                                <h6 class="text-primary">Bathrooms</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Lobby'}">
+                                <h6 class="text-primary">Lobby</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Trash'}">
+                                <h6 class="text-primary">Trash</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body ">
+                <h5 class="card-title">Wednesday</h5>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div th:if="${schedule.week == 2}">
+                        <div th:if="${schedule.day == 3}">
+                            <div th:if="${schedule.chore == 'Kitchen'}">
+                                <h6 class="text-primary">Kitchen</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Floors'}">
+                                <h6 class="text-primary">Floors</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Bathrooms'}">
+                                <h6 class="text-primary">Bathrooms</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Lobby'}">
+                                <h6 class="text-primary">Lobby</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Trash'}">
+                                <h6 class="text-primary">Trash</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body ">
+                <h5 class="card-title">Thursday</h5>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div th:if="${schedule.week == 2}">
+                        <div th:if="${schedule.day == 4}">
+                            <div th:if="${schedule.chore == 'Kitchen'}">
+                                <h6 class="text-primary">Kitchen</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Floors'}">
+                                <h6 class="text-primary">Floors</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Bathrooms'}">
+                                <h6 class="text-primary">Bathrooms</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Lobby'}">
+                                <h6 class="text-primary">Lobby</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Trash'}">
+                                <h6 class="text-primary">Trash</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body ">
+                <h5 class="card-title">Friday</h5>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div th:if="${schedule.week == 2}">
+                        <div th:if="${schedule.day == 5}">
+                            <div th:if="${schedule.chore == 'Kitchen'}">
+                                <h6 class="text-primary">Kitchen</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Floors'}">
+                                <h6 class="text-primary">Floors</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Bathrooms'}">
+                                <h6 class="text-primary">Bathrooms</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Lobby'}">
+                                <h6 class="text-primary">Lobby</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
+                                <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
+                            </div>
+                            <div th:if="${schedule.chore == 'Trash'}">
+                                <h6 class="text-primary">Trash</h6>
+                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
+                                <a th:href="@{'/update-chore/'+ ${schedule.id}}">Change</a>
                                 <p class="card-link mb-2" th:text="${'Manager: ' + schedule.manager}">Manager</p>
                             </div>
                         </div>

@@ -20,12 +20,12 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Options
+                        Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">View Schedule</a>
-                        <a class="dropdown-item" href="/register">Create New Employee</a>
-                        <a class="dropdown-item" href="#">Edit Chores</a>
+                        <a class="dropdown-item" th:href="@{/new-schedule}">Make New Schedule</a>
+                        <a class="dropdown-item" th:href="@{/choreslist}">Chores</a>
+                        <a class="dropdown-item" th:href="@{/register}">Create New Employee</a>
                         <a class="dropdown-item" th:href="@{/logout}">Logout</a>
                     </div>
                 </li>
@@ -35,6 +35,7 @@
             Name
         </p>
     </nav>
+</div>
 </div>
 <div class="container text-center">
     <div>

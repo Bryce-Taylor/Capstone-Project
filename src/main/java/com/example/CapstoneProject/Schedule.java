@@ -1,6 +1,10 @@
 package com.example.CapstoneProject;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "schedule")
 public class Schedule {
@@ -32,6 +36,14 @@ public class Schedule {
 
     @Column(name="man_checked", nullable = false, length = 100)
     private boolean man_checked;
+
+    @Column(name="date_made")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDate date_made;
+
+    @Column(name="end_date")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDate end_date;
 
     public long getId() {
         return id;
@@ -104,5 +116,21 @@ public class Schedule {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public LocalDate getDate_made() {
+        return date_made;
+    }
+
+    public void setDate_made(LocalDate date_made) {
+        this.date_made = date_made;
+    }
+
+    public LocalDate getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(LocalDate end_date) {
+        this.end_date = end_date;
     }
 }

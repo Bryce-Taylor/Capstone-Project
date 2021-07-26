@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center" class="container">
+    <h1>Edit Chore</h1>
+    <br />
+    <form th:action="@{/chore_info}" th:object="${chore}"
+          method="post">
+        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{week}" />
+        <input type="hidden" th:field="*{chore}" />
+        <input type="hidden" th:field="*{day}" />
+        <input type="hidden" th:field="*{user}" />
+        <input type="hidden" th:field="*{manager}" />
+        <input type="hidden" th:field="*{user_checked}" />
+        <input type="hidden" th:field="*{man_checked}" />
+        <div class="form__group">
+            <p> User </p>
+            <input type="text" class="form__input" th:field="*{username}"
+                   required/>
+        </div>
+        <button type="submit" class="btn">Order</button>
+    </form>
+</div>
+</body>
+</html>

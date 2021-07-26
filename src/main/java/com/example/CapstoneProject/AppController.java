@@ -1,7 +1,8 @@
 package com.example.CapstoneProject;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -9,7 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.websocket.server.PathParam;
+import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 @Controller
@@ -17,6 +25,9 @@ public class AppController {
 
     @Autowired
     private UserRepository userRepo;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Autowired
     private ChoresRepository choresRepo;
@@ -35,12 +46,20 @@ public class AppController {
             return "home";
         }
         User user = userDetails.getUser(userDetails.getUsername());
-        List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
-        model.addAttribute("currentSchedule", currentSchedule);
+        LocalDate today = LocalDate.now();
+        List<Schedule> currSchedule = (List<Schedule>) scheduleRepo.findAll();
+        if (today.isAfter(currSchedule.get(0).getEnd_date())){
+            scheduleRepo.deleteAll();
+            makeSchedule();
+            List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
+            model.addAttribute("currentSchedule", currentSchedule);
+        }else {
+            List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
+            model.addAttribute("currentSchedule", currentSchedule);
+        }
         for (User list : listUser) {
             if (user.getUsername().equals(list.getUsername()) &&
                     user.getRole().equals("User")) {
-
                 return "home";
             }
             if (user.getUsername().equals(list.getUsername()) &&
@@ -69,76 +88,99 @@ public class AppController {
         userRepo.save(user);
         return "redirect:/";
     }
+    public void sendEmail(String recipientEmail)
+            throws MessagingException, UnsupportedEncodingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
 
-    @GetMapping("/new-schedule")
-    public String newSchedule() {
-        return "new-schedule";
+        helper.setFrom("nonreply@cms.com", "CMS");
+        helper.setTo(recipientEmail);
+
+        String subject = "New Schedule is up!";
+
+        String content = "<p>Hello,</p>"
+                + "<p>The schedule for the week is now up!</p>"
+                + "<p>Click the link to login :</p>"
+                + "<br>"
+                + "<p>Ignore this email if you not an employee of CMS. ";
+
+        helper.setSubject(subject);
+
+        helper.setText(content, true);
+
+        mailSender.send(message);
     }
-
-    @GetMapping("/schedule")
-    public String listUser(Model model, @RequestParam int week) {
-        List<User> listUsers = (List<User>) userRepo.findAll();
-        listUsers.removeIf(user -> !user.getRole().equals("User"));
-        model.addAttribute("listUsers", listUsers);
-        ArrayList<Long> userIds = new ArrayList<>();
-        ArrayList<Long> copies = new ArrayList<>();
-        List<User> userInfo = new ArrayList<>();
-        ArrayList<Chores> chores = (ArrayList<Chores>) choresRepo.findAll();
-        int day = 1;
-        int count = 0;
-        while (count != 50) {
-            double number = (Math.random() * (listUsers.get(listUsers.size() - 1).getId() - listUsers.get(0).getId() + 1)) + listUsers.get(0).getId();
-            if (Collections.frequency(userIds, (long) number) > 1) {
-                copies.add((long) number);
-            } else if (!copies.contains((long) number)) {
-                userIds.add((long) number);
-                count++;
+    public String makeSchedule() {
+        int week = 1;
+        while(week!= 3) {
+            List<User> listUsers = (List<User>) userRepo.findAll();
+            listUsers.removeIf(user -> !user.getRole().equals("User"));
+            ArrayList<Long> userIds = new ArrayList<>();
+            ArrayList<Long> copies = new ArrayList<>();
+            List<User> userInfo = new ArrayList<>();
+            ArrayList<Chores> chores = (ArrayList<Chores>) choresRepo.findAll();
+            int day = 1;
+            int count = 0;
+            while (count != 50) {
+                double number = (Math.random() * (listUsers.get(listUsers.size() - 1).getId() - listUsers.get(0).getId() + 1)) + listUsers.get(0).getId();
+                if (Collections.frequency(userIds, (long) number) > 1) {
+                    copies.add((long) number);
+                } else if (!copies.contains((long) number)) {
+                    userIds.add((long) number);
+                    count++;
+                }
             }
-        }
-        for (Long id : userIds) {
-            for (User user : listUsers) {
-                if (id.equals(user.getId())) {
-                    Optional<User> userInfomation = userRepo.findById(id);
-                    if (userInfomation.isPresent()) {
-                        userInfo.add((userInfomation.get()));
+            for (Long id : userIds) {
+                for (User user : listUsers) {
+                    if (id.equals(user.getId())) {
+                        Optional<User> userInfomation = userRepo.findById(id);
+                        if (userInfomation.isPresent()) {
+                            userInfo.add((userInfomation.get()));
+                        }
                     }
                 }
             }
-        }
 
-        int choreCount = 0;
-        int i = 0;
-        int j = 0;
-        int k = 0;
-        Schedule newSchedule = new Schedule();
-        while (day != 6) {
-            for (i = 0; i < chores.size(); i++) {
-                for (j = k; j < userInfo.size(); j++) {
-                    if (choreCount != 2 && i < chores.size()) {
-                        newSchedule.setId(userInfo.get(k).getId());
-                        newSchedule.setUser(userInfo.get(j).getFullName());
-                        newSchedule.setUsername(userInfo.get(j).getUsername());
-                        newSchedule.setChore(chores.get(i).getChore());
-                        newSchedule.setWeek(week);
-                        newSchedule.setDay(day);
-                        newSchedule.setManager("Bryce");
-                        newSchedule.setUser_checked(false);
-                        newSchedule.setMan_checked(false);
-                        scheduleRepo.save(newSchedule);
-                        choreCount++;
-                        k++;
-                    } else if (choreCount == 2) {
-                        choreCount = 0;
-                        i++;
-                        j--;
+            int choreCount = 0;
+            int i = 0;
+            int j = 0;
+            int k = 0;
+            Schedule newSchedule = new Schedule();
+            while (day != 6) {
+                for (i = 0; i < chores.size(); i++) {
+                    for (j = k; j < userInfo.size(); j++) {
+                        if (choreCount != 2 && i < chores.size()) {
+                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
+                            LocalDate friday = LocalDate.now();
+                            LocalDate monday = friday.plus(2, ChronoUnit.DAYS);
+                            LocalDate nextFriday =  monday.plus(11, ChronoUnit.DAYS);
+                            newSchedule.setDate_made(monday);
+                            newSchedule.setEnd_date(nextFriday);
+                            newSchedule.setId(userInfo.get(j).getId());
+                            newSchedule.setUser(userInfo.get(j).getFullName());
+                            newSchedule.setUsername(userInfo.get(j).getUsername());
+                            newSchedule.setChore(chores.get(i).getChore());
+                            newSchedule.setWeek(week);
+                            newSchedule.setDay(day);
+                            newSchedule.setManager("Bryce");
+                            newSchedule.setUser_checked(false);
+                            newSchedule.setMan_checked(false);
+                            scheduleRepo.save(newSchedule);
+                            choreCount++;
+                            k++;
+                        } else if (choreCount == 2) {
+                            choreCount = 0;
+                            i++;
+                            j--;
+                        }
                     }
                 }
+                day++;
             }
-            day++;
+            week++;
         }
-        List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findByWeek(week);
-        model.addAttribute("currentSchedule", currentSchedule);
-        return "schedule";
+        List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
+        return "currentSchedule";
     }
 
     @GetMapping("/chores")
@@ -188,5 +230,24 @@ public class AppController {
 
         scheduleRepo.save(c);
         return "redirect:/user";
+    }
+    @GetMapping("/update-chore/{id}")
+    public ModelAndView editChoreUser(@PathVariable(name ="id")Long id, Model model) {
+        List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
+        model.addAttribute("currentSchedule", currentSchedule);
+        ModelAndView mav =  new ModelAndView("update-chore");
+        Optional<Schedule> chore = scheduleRepo.findById(id);
+        mav.addObject("chore", chore);
+        return mav;
+    }
+    @PostMapping("/chore_info")
+    public String chore_info(Schedule newPerson){
+        Optional<Schedule> oldPerson = scheduleRepo.findById(newPerson.getId());
+        if (oldPerson != null) {
+            oldPerson.get().setUser(newPerson.getUser());
+            oldPerson.get().setUsername(newPerson.getUsername());
+            scheduleRepo.save(oldPerson.get());
+        }
+        return "redirect:/";
     }
 }
