@@ -14,6 +14,8 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
 
     public ArrayList<Schedule> findUserByUsername(String username);
 
+    public String findByUsername(String username);
+
     public Optional<Schedule> findChoreById(Long id);
 
     public void deleteAll();

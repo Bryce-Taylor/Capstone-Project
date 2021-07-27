@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
@@ -40,7 +41,7 @@ public class AppController {
     private CustomUserDetailsService userService;
 
     @GetMapping(value = "")
-    public String viewHomePage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+    public String viewHomePage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) throws MessagingException, UnsupportedEncodingException {
         List<User> listUser = userService.getAllUsers();
         if (userDetails == null) {
             return "home";
@@ -48,6 +49,17 @@ public class AppController {
         User user = userDetails.getUser(userDetails.getUsername());
         LocalDate today = LocalDate.now();
         List<Schedule> currSchedule = (List<Schedule>) scheduleRepo.findAll();
+        for (int chore = 0; chore < currSchedule.size(); chore++){
+            if (currSchedule.get(chore).getDay().isBefore(today) && !currSchedule.get(chore).isUser_checked()){
+                for(User person : listUser){
+                    if (currSchedule.get(chore).getUser().equals(person.getFullName())){
+//                        missingChoreEmail(user.getEmail());
+                        System.out.println("sending missing chore email");
+                    }
+
+                }
+            }
+        }
         if (today.isAfter(currSchedule.get(0).getEnd_date())||  currSchedule.size() == 0){
             scheduleRepo.deleteAll();
             makeSchedule();
@@ -88,19 +100,18 @@ public class AppController {
         userRepo.save(user);
         return "redirect:/";
     }
-    public void sendEmail(String recipientEmail)
+    public void sendEmail(String recipientEmail, User user)
             throws MessagingException, UnsupportedEncodingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
-
         helper.setFrom("nonreply@cms.com", "CMS");
         helper.setTo(recipientEmail);
-
+        String name = user.getFullName();
         String subject = "New Schedule is up!";
 
-        String content = "<p>Hello,</p>"
+        String content = "<p>Hello, "+ name + "</p>"
                 + "<p>The schedule for the week is now up!</p>"
-                + "<p>Click the link to login :</p>"
+                + "<p>Click the link below to login :</p>"
                 + "<br>"
                 + "<p>Ignore this email if you not an employee of CMS. ";
 
@@ -110,7 +121,30 @@ public class AppController {
 
         mailSender.send(message);
     }
-    public String makeSchedule() {
+    public void missingChoreEmail(String recipientEmail)
+            throws MessagingException, UnsupportedEncodingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom("nonreply@cms.com", "CMS");
+        helper.setTo(recipientEmail);
+
+        String subject = "You missed a Chore";
+
+        String content = "<p>Hello,</p>"
+                + "<p>This email was written to inform you that you missed a chore!</p>"
+                + "<p>Please make sure that you are doing chores regularly. :</p>"
+                + "<p>Click the link below to see complete schedule :</p>"
+                + "<br>"
+                + "<p>Ignore this email if you not an employee of CMS. ";
+
+        helper.setSubject(subject);
+
+        helper.setText(content, true);
+
+        mailSender.send(message);
+    }
+    public String makeSchedule() throws MessagingException, UnsupportedEncodingException {
         int week = 1;
         while(week!= 3) {
             List<User> listUsers = (List<User>) userRepo.findAll();
@@ -134,6 +168,7 @@ public class AppController {
                 for (User user : listUsers) {
                     if (id.equals(user.getId())) {
                         Optional<User> userInfomation = userRepo.findById(id);
+//                        sendEmail(userInfomation.get().getEmail(), user);
                         if (userInfomation.isPresent()) {
                             userInfo.add((userInfomation.get()));
                         }
@@ -195,7 +230,6 @@ public class AppController {
                                 LocalDate nextDay =  friday.plus(11, ChronoUnit.DAYS);
                                 newSchedule.setDay(nextDay);
                             }
-                            newSchedule.setManager("Bryce");
                             newSchedule.setUser_checked(false);
                             newSchedule.setMan_checked(false);
                             scheduleRepo.save(newSchedule);
