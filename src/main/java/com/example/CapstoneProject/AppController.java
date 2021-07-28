@@ -50,17 +50,20 @@ public class AppController {
         LocalDate today = LocalDate.now();
         List<Schedule> currSchedule = (List<Schedule>) scheduleRepo.findAll();
         for (int chore = 0; chore < currSchedule.size(); chore++){
-            if (currSchedule.get(chore).getDay().isBefore(today) && !currSchedule.get(chore).isUser_checked()){
-                for(User person : listUser){
-                    if (currSchedule.get(chore).getUser().equals(person.getFullName())){
-//                        missingChoreEmail(user.getEmail());
-                        System.out.println("sending missing chore email");
-                    }
-
+            if (currSchedule.get(chore).getDay().isBefore(today)) {
+                if (!currSchedule.get(chore).isUser_checked() || !currSchedule.get(chore).isMan_checked()) {
+//                missingChoreEmail(currSchedule.get(chore).getUser_email());
+//                missingChoreEmail(currSchedule.get(chore).getMan_email());
+                    System.out.println("sending missing chore email" + currSchedule.get(chore).getUser());
+                    currSchedule.get(chore).setMissed(true);
+                    scheduleRepo.save(currSchedule.get(chore));
+                }else if (currSchedule.get(chore).isUser_checked() && currSchedule.get(chore).isMan_checked()){
+                    currSchedule.get(chore).setCompleted(true);
+                    scheduleRepo.save(currSchedule.get(chore));
                 }
             }
         }
-        if (today.isAfter(currSchedule.get(0).getEnd_date())||  currSchedule.size() == 0){
+        if (today.isAfter(currSchedule.get(0).getEnd_date()) ||  currSchedule.size() == 0){
             scheduleRepo.deleteAll();
             makeSchedule();
             List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
@@ -149,6 +152,8 @@ public class AppController {
         while(week!= 3) {
             List<User> listUsers = (List<User>) userRepo.findAll();
             listUsers.removeIf(user -> !user.getRole().equals("User"));
+            List<User> listManager = (List<User>) userRepo.findAll();
+            listManager.removeIf(user -> !user.getRole().equals("Manager"));
             ArrayList<Long> userIds = new ArrayList<>();
             ArrayList<Long> copies = new ArrayList<>();
             List<User> userInfo = new ArrayList<>();
@@ -177,6 +182,8 @@ public class AppController {
             }
 
             int choreCount = 0;
+            int managerCount = 0;
+            int manCounter = 0;
             int i = 0;
             int j = 0;
             int k = 0;
@@ -185,7 +192,7 @@ public class AppController {
                 for (i = 0; i < chores.size(); i++) {
                     for (j = k; j < userInfo.size(); j++) {
                         if (choreCount != 2 && i < chores.size()) {
-                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
+                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/uuuu");
                             LocalDate friday = LocalDate.now();
                             LocalDate monday = friday.plus(2, ChronoUnit.DAYS);
                             LocalDate nextFriday =  friday.plus(11, ChronoUnit.DAYS);
@@ -194,44 +201,65 @@ public class AppController {
                             newSchedule.setId(userInfo.get(j).getId());
                             newSchedule.setUser(userInfo.get(j).getFullName());
                             newSchedule.setUsername(userInfo.get(j).getUsername());
+                            newSchedule.setUser_email(userInfo.get(j).getEmail());
                             newSchedule.setChore(chores.get(i).getChore());
+                            if (manCounter == 1){
+                                manCounter=0;
+                                managerCount++;
+                            }else if (managerCount == listManager.size()){
+                                managerCount=0;
+                                manCounter=0;
+                                newSchedule.setManager(listManager.get(managerCount).getFullName());
+                                newSchedule.setMan_username(listManager.get(managerCount).getUsername());
+                                newSchedule.setMan_email(listManager.get(managerCount).getEmail());
+                                manCounter++;
+                            }else{
+                                newSchedule.setManager(listManager.get(managerCount).getFullName());
+                                newSchedule.setMan_username(listManager.get(managerCount).getUsername());
+                                newSchedule.setMan_email(listManager.get(managerCount).getEmail());
+                                manCounter++;
+                            }
                             newSchedule.setWeek(week);
                             if (week == 1 && day == 1){
-                                newSchedule.setDay(friday);
+                                newSchedule.setDay(monday);
                             }else if (week == 1 && day == 2){
-                                LocalDate nextDay =  friday.plus(1, ChronoUnit.DAYS);
+                                LocalDate nextDay =  monday.plus(1, ChronoUnit.DAYS);
                                 newSchedule.setDay(nextDay);
                             }
                             else if (week == 1 && day == 3){
-                                LocalDate nextDay =  friday.plus(2, ChronoUnit.DAYS);
+                                LocalDate nextDay =  monday.plus(2, ChronoUnit.DAYS);
                                 newSchedule.setDay(nextDay);
                             }
                             else if (week == 1 && day == 4){
-                                LocalDate nextDay =  friday.plus(3, ChronoUnit.DAYS);
+                                LocalDate nextDay =  monday.plus(3, ChronoUnit.DAYS);
                                 newSchedule.setDay(nextDay);
                             }else if (week == 1 && day == 5){
-                                LocalDate nextDay =  friday.plus(4, ChronoUnit.DAYS);
+                                LocalDate nextDay =  monday.plus(4, ChronoUnit.DAYS);
                                 newSchedule.setDay(nextDay);
                             }else if (week == 2 && day == 1){
-                                LocalDate nextDay =  friday.plus(7, ChronoUnit.DAYS);
+                                LocalDate nextDay =  monday.plus(7, ChronoUnit.DAYS);
                                 newSchedule.setDay(nextDay);
                             }else if (week == 2 && day == 2){
-                                LocalDate nextDay =  friday.plus(8, ChronoUnit.DAYS);
+                                LocalDate nextDay =  monday.plus(8, ChronoUnit.DAYS);
                                 newSchedule.setDay(nextDay);
                             }
                             else if (week == 2 && day == 3){
-                                LocalDate nextDay =  friday.plus(9, ChronoUnit.DAYS);
+                                LocalDate nextDay =  monday.plus(9, ChronoUnit.DAYS);
                                 newSchedule.setDay(nextDay);
                             }
                             else if (week == 2 && day == 4){
-                                LocalDate nextDay =  friday.plus(10, ChronoUnit.DAYS);
+                                LocalDate nextDay =  monday.plus(10, ChronoUnit.DAYS);
                                 newSchedule.setDay(nextDay);
                             }else if (week == 2 && day == 5){
-                                LocalDate nextDay =  friday.plus(11, ChronoUnit.DAYS);
+                                LocalDate nextDay =  monday.plus(11, ChronoUnit.DAYS);
                                 newSchedule.setDay(nextDay);
                             }
                             newSchedule.setUser_checked(false);
+                            newSchedule.setUser_checkoff_time(null);
                             newSchedule.setMan_checked(false);
+                            newSchedule.setMan_checkoff_time(null);
+                            newSchedule.setMissed(false);
+                            newSchedule.setCompleted(false);
                             scheduleRepo.save(newSchedule);
                             choreCount++;
                             k++;
@@ -284,6 +312,12 @@ public class AppController {
         model.addAttribute("user", user);
         return "user";
     }
+    @GetMapping("/manager")
+    public String managerProfile(Model model, @AuthenticationPrincipal CustomUserDetails userDetail){
+        List<Schedule> manager = (List<Schedule>) scheduleRepo.findUserByman_username(userDetail.getUsername());
+        model.addAttribute("manager", manager);
+        return "manager";
+    }
     @GetMapping("/check-off/{id}")
     public String checkedOff(@PathVariable(name ="id")Long id){
         Optional<Schedule> chore = scheduleRepo.findChoreById(id);
@@ -299,6 +333,22 @@ public class AppController {
 
         scheduleRepo.save(c);
         return "redirect:/user";
+    }
+    @GetMapping("/man/check-off/{id}")
+    public String checkedOffManager(@PathVariable(name ="id")Long id){
+        Optional<Schedule> chore = scheduleRepo.findChoreById(id);
+        Schedule c = chore.get();
+        if (!c.isMan_checked()){
+            c.setMan_checked(true);
+            LocalDateTime time = LocalDateTime.now();
+            c.setMan_checkoff_time(time);
+        }else if(c.isMan_checked()){
+            c.setMan_checked(false);
+            c.setMan_checkoff_time(null);
+        }
+
+        scheduleRepo.save(c);
+        return "redirect:/manager";
     }
     @GetMapping("/update-chore/{id}")
     public ModelAndView editChoreUser(@PathVariable(name ="id")Long id, Model model) {

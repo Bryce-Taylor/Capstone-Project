@@ -33,6 +33,9 @@ public class Schedule {
     @Column(name="manager", nullable = false, length = 100)
     private String manager;
 
+    @Column(name = "man_username", nullable = false, length = 20)
+    private String man_username;
+
     @Column(name="user_checked", nullable = false, length = 100)
     private boolean user_checked;
 
@@ -54,6 +57,19 @@ public class Schedule {
     @Column(name="man_checkoff_time")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime man_checkoff_time;
+
+    @Column(name="missed", nullable = false, length = 100)
+    private boolean missed;
+
+    @Column(name="completed", nullable = false, length = 100)
+    private boolean completed;
+
+    @Column(name="user_email", nullable = false, length = 100)
+    private String user_email;
+
+    @Column(name="man_email", nullable = false, length = 100)
+    private String man_email;
+
 
     public long getId() {
         return id;
@@ -158,5 +174,45 @@ public class Schedule {
 
     public void setMan_checkoff_time(LocalDateTime man_checkoff_time) {
         this.man_checkoff_time = man_checkoff_time;
+    }
+
+    public String getMan_username() {
+        return man_username;
+    }
+
+    public void setMan_username(String man_username) {
+        this.man_username = man_username;
+    }
+
+    public boolean isMissed() {
+        return missed;
+    }
+
+    public void setMissed(boolean missed) {
+        this.missed = missed;
+    }
+
+    public String getUser_email() {
+        return user_email;
+    }
+
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
+    }
+
+    public String getMan_email() {
+        return man_email;
+    }
+
+    public void setMan_email(String man_email) {
+        this.man_email = man_email;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }

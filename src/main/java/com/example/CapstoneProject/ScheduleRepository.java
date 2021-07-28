@@ -1,5 +1,6 @@
 package com.example.CapstoneProject;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,9 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
     public ArrayList<Schedule> findByWeek(int week);
 
     public ArrayList<Schedule> findUserByUsername(String username);
+
+    @Query("SELECT u FROM Schedule u WHERE u.man_username = ?1")
+    public ArrayList<Schedule> findUserByman_username(String man_username);
 
     public String findByUsername(String username);
 
