@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+</head>
+<body>
+<div sec:authorize="isAuthenticated()">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <a class="dropdown-item" href="/">Change Password</a>
+            <a  th:href="@{/logout}">Logout</a>
+            <p class="welcome-manager text-primary"th:text="${'Hello, ' + #authentication.name}">
+                Name
+            </p>
+        </div>
+    </nav>
+</div>
+<div>
+    <h1 class="heading">Your Chores</h1>
+    <ul class="schedule-grid " style="padding-top: 30px;">
+        <section th:each="schedule: ${manager}">
+            <div th:if="${schedule.user_checked ==  true && schedule.missed !=  true}">
+            <div class="card" style="width: 30rem;">
+                <div class="card-body ">
+                    <h5 class="card-subtitle mb-2" th:text="${'Week ' + schedule.week}">Week</h5>
+                    <h6 class="text-primary" th:text="${schedule.user}">User</h6>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${schedule.day}">Day</h6>
+                    <p class="card-text"  th:text="${'Chore: ' + schedule.chore}">Chore</p>
+                    <div th:if="${schedule.missed !=  true}">
+                        <div th:if="${schedule.man_checked ==  false}">
+                            <a class="btn btn-primary" th:href="@{'/check-off/' + ${schedule.id}}">Check-off chore</a>
+                        </div>
+                        <div th:if="${schedule.man_checked ==  true}">
+                            <a class="btn btn-danger" th:href="@{'/check-off/' + ${schedule.id}}">Uncheck chore</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div th:if="${schedule.missed == true }">
+                <div class="card" style="width: 30rem;">
+                    <div class="card-body ">
+                        <h5 class="card-subtitle mb-2" th:text="${'Week ' + schedule.week}">Week</h5>
+                        <h6 class="text-primary" th:text="${schedule.user}">User</h6>
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${schedule.day}">Day</h6>
+                        <p class="card-text"  th:text="${'Chore: ' + schedule.chore}">Chore</p>
+                        <p class="text-danger" >MISSED </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </ul>
+</div>
+</body>
+</html>

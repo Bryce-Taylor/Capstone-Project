@@ -44,13 +44,21 @@
           <h6 class="text-primary" th:text="${schedule.user}">User</h6>
           <h6 class="card-subtitle mb-2 text-muted" th:text="${schedule.day}">Day</h6>
           <p class="card-text"  th:text="${'Chore: ' + schedule.chore}">Chore</p>
-          <div th:if="${schedule.user_checked ==  false}">
-              <a class="btn btn-primary" th:href="@{'/check-off/' + ${schedule.id}}">Check-off chore</a>
-        </div>
-          <div th:if="${schedule.user_checked ==  true}">
-            <a class="btn btn-danger" th:href="@{'/check-off/' + ${schedule.id}}">Uncheck chore</a>
+          <div th:if="${schedule.missed !=  true && schedule.completed == false }">
+              <div th:if="${schedule.user_checked ==  false}">
+                  <a class="btn btn-primary" th:href="@{'/check-off/' + ${schedule.id}}">Check-off chore</a>
+              </div>
+              <div th:if="${schedule.user_checked ==  true}">
+                <a class="btn btn-danger" th:href="@{'/check-off/' + ${schedule.id}}">Uncheck chore</a>
+              </div>
           </div>
-      </div>
+          <div th:if="${schedule.missed == true && schedule.completed == false }">
+            <p class="text-danger" >MISSED </p>
+          </div>
+          <div th:if="${schedule.missed == false && schedule.completed == true }">
+            <p class="text-success" >COMPLETED </p>
+          </div>
+        </div>
       </div>
     </section>
   </ul>
