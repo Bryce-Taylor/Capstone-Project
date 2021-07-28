@@ -33,163 +33,131 @@
     <h3><a th:href="@{/login}">Login</a></h3>
 </div>
 <div>
-    <h1> </h1>
+    <h2 class="heading">Week 1</h2>
     <ul class="schedule-grid " style="padding-top: 30px;">
         <div class="card" style="width: 15rem;">
-            <div class="card-body ">
-                <h5 class="card-title">Monday</h5>
-                <section th:each="schedule: ${currentSchedule}">
-                    <div th:if="${schedule.week == 1}">
-                        <div th:if="${schedule.day == 1}">
-                            <div th:if="${schedule.chore == 'Kitchen'}">
-                                <h6 class="text-primary">Kitchen</h6>
-                            <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Floors'}">
-                                <h6 class="text-primary">Floors</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Bathrooms'}">
-                                <h6 class="text-primary">Bathrooms</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Lobby'}">
-                                <h6 class="text-primary">Lobby</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Trash'}">
-                                <h6 class="text-primary">Trash</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
+            <div class="card-body">
+                <h3>Kitchen</h3>
+                <div>
+                    <section th:each="schedule: ${currentSchedule}">
+                        <div class="chore-entry" th:if="${schedule.chore == 'Kitchen' && schedule.week ==1}">
+                            <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                            <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                            <hr>
                         </div>
-
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body">
+                <h3>Floors</h3>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div class="chore-entry" th:if="${schedule.chore == 'Floors' && schedule.week ==1}">
+                        <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <hr>
                     </div>
                 </section>
             </div>
         </div>
         <div class="card" style="width: 15rem;">
-            <div class="card-body ">
-                <h5 class="card-title">Tuesday</h5>
+            <div class="card-body">
+                <h3>Bathrooms</h3>
                 <section th:each="schedule: ${currentSchedule}">
-                    <div th:if="${schedule.week == 1}">
-                        <div th:if="${schedule.day == 2}">
-                            <div th:if="${schedule.chore == 'Kitchen'}">
-                                <h6 class="text-primary">Kitchen</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Floors'}">
-                                <h6 class="text-primary">Floors</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Bathrooms'}">
-                                <h6 class="text-primary">Bathrooms</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Lobby'}">
-                                <h6 class="text-primary">Lobby</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Trash'}">
-                                <h6 class="text-primary">Trash</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                        </div>
-
+                    <div class="chore-entry" th:if="${schedule.chore == 'Bathrooms'&& schedule.week ==1}">
+                        <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <hr>
                     </div>
                 </section>
             </div>
         </div>
         <div class="card" style="width: 15rem;">
-            <div class="card-body ">
-                <h5 class="card-title">Wednesday</h5>
+            <div class="card-body">
+                <h3>Lobby</h3>
                 <section th:each="schedule: ${currentSchedule}">
-                    <div th:if="${schedule.week == 1}">
-                        <div th:if="${schedule.day == 3}">
-                            <div th:if="${schedule.chore == 'Kitchen'}">
-                                <h6 class="text-primary">Kitchen</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Floors'}">
-                                <h6 class="text-primary">Floors</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Bathrooms'}">
-                                <h6 class="text-primary">Bathrooms</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Lobby'}">
-                                <h6 class="text-primary">Lobby</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Trash'}">
-                                <h6 class="text-primary">Trash</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                        </div>
+                    <div class="chore-entry" th:if="${schedule.chore == 'Lobby' && schedule.week ==1}">
+                        <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <hr>
                     </div>
                 </section>
             </div>
         </div>
         <div class="card" style="width: 15rem;">
-            <div class="card-body ">
-                <h5 class="card-title">Thursday</h5>
+            <div class="card-body">
+                <h3>Trash</h3>
                 <section th:each="schedule: ${currentSchedule}">
-                    <div th:if="${schedule.week == 1}">
-                        <div th:if="${schedule.day == 4}">
-                            <div th:if="${schedule.chore == 'Kitchen'}">
-                                <h6 class="text-primary">Kitchen</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Floors'}">
-                                <h6 class="text-primary">Floors</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Bathrooms'}">
-                                <h6 class="text-primary">Bathrooms</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Lobby'}">
-                                <h6 class="text-primary">Lobby</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Trash'}">
-                                <h6 class="text-primary">Trash</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                        </div>
-
+                    <div class="chore-entry" th:if="${schedule.chore == 'Trash'&& schedule.week == 1}">
+                        <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <hr>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </ul>
+</div>
+<div>
+    <h2 class="heading">Week 2</h2>
+    <ul class="schedule-grid " style="padding-top: 30px;">
+        <div class="card" style="width: 15rem;">
+            <div class="card-body">
+                <h3>Kitchen</h3>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div class="chore-entry" th:if="${schedule.chore == 'Kitchen' && schedule.week == 2}">
+                        <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <hr>
                     </div>
                 </section>
             </div>
         </div>
         <div class="card" style="width: 15rem;">
-            <div class="card-body ">
-                <h5 class="card-title">Friday</h5>
+            <div class="card-body">
+                <h3>Floors</h3>
                 <section th:each="schedule: ${currentSchedule}">
-                    <div th:if="${schedule.week == 1}">
-                        <div th:if="${schedule.day == 5}">
-                            <div th:if="${schedule.chore == 'Kitchen'}">
-                                <h6 class="text-primary">Kitchen</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Floors'}">
-                                <h6 class="text-primary">Floors</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Bathrooms'}">
-                                <h6 class="text-primary">Bathrooms</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Lobby'}">
-                                <h6 class="text-primary">Lobby</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                            <div th:if="${schedule.chore == 'Trash'}">
-                                <h6 class="text-primary">Trash</h6>
-                                <p class="card-text"  th:text="${schedule.user}">Full Name</p>
-                            </div>
-                        </div>
-
+                    <div class="chore-entry" th:if="${schedule.chore == 'Floors' && schedule.week == 2}">
+                        <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <hr>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body">
+                <h3>Bathrooms</h3>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div class="chore-entry" th:if="${schedule.chore == 'Bathrooms'&& schedule.week == 2}">
+                        <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <hr>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body">
+                <h3>Lobby</h3>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div class="chore-entry" th:if="${schedule.chore == 'Lobby' && schedule.week == 2}">
+                        <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <hr>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body">
+                <h3>Trash</h3>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div class="chore-entry" th:if="${schedule.chore == 'Trash'&& schedule.week == 2}">
+                        <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <hr>
                     </div>
                 </section>
             </div>

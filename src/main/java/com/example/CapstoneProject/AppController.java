@@ -230,6 +230,7 @@ public class AppController {
                                 LocalDate nextDay =  friday.plus(11, ChronoUnit.DAYS);
                                 newSchedule.setDay(nextDay);
                             }
+                            newSchedule.setManager("Bryce");
                             newSchedule.setUser_checked(false);
                             newSchedule.setMan_checked(false);
                             scheduleRepo.save(newSchedule);
