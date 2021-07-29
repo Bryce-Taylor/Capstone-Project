@@ -49,20 +49,6 @@ public class AppController {
         User user = userDetails.getUser(userDetails.getUsername());
         LocalDate today = LocalDate.now();
         List<Schedule> currSchedule = (List<Schedule>) scheduleRepo.findAll();
-        for (int chore = 0; chore < currSchedule.size(); chore++){
-            if (currSchedule.get(chore).getDay().isBefore(today)) {
-                if (!currSchedule.get(chore).isUser_checked() || !currSchedule.get(chore).isMan_checked()) {
-//                missingChoreEmail(currSchedule.get(chore).getUser_email());
-//                missingChoreEmail(currSchedule.get(chore).getMan_email());
-                    System.out.println("sending missing chore email" + currSchedule.get(chore).getUser());
-                    currSchedule.get(chore).setMissed(true);
-                    scheduleRepo.save(currSchedule.get(chore));
-                }else if (currSchedule.get(chore).isUser_checked() && currSchedule.get(chore).isMan_checked()){
-                    currSchedule.get(chore).setCompleted(true);
-                    scheduleRepo.save(currSchedule.get(chore));
-                }
-            }
-        }
         if (today.isAfter(currSchedule.get(0).getEnd_date()) ||  currSchedule.size() == 0){
             scheduleRepo.deleteAll();
             makeSchedule();
@@ -79,6 +65,22 @@ public class AppController {
             }
             if (user.getUsername().equals(list.getUsername()) &&
                     user.getRole().equals("Admin")) {
+                for (int chore = 0; chore < currSchedule.size(); chore++){
+                    if (currSchedule.get(chore).getDay().isBefore(today)) {
+                        if (!currSchedule.get(chore).isUser_checked() || !currSchedule.get(chore).isMan_checked()) {
+                            if (!currSchedule.get(chore).isNotified()){
+                                missingChoreEmail(currSchedule.get(chore).getUser_email());
+                                missingChoreEmail(currSchedule.get(chore).getMan_email());
+                                currSchedule.get(chore).setMissed(true);
+                                currSchedule.get(chore).setNotified(true);
+                                scheduleRepo.save(currSchedule.get(chore));
+                            }
+                        }else if (currSchedule.get(chore).isUser_checked() && currSchedule.get(chore).isMan_checked()){
+                            currSchedule.get(chore).setCompleted(true);
+                            scheduleRepo.save(currSchedule.get(chore));
+                        }
+                    }
+                }
                 return "home_admin";
             }
             if (user.getUsername().equals(list.getUsername()) &&
@@ -116,7 +118,8 @@ public class AppController {
                 + "<p>The schedule for the week is now up!</p>"
                 + "<p>Click the link below to login :</p>"
                 + "<br>"
-                + "<p>Ignore this email if you not an employee of CMS. ";
+                + "<p>Ignore this email if you not an employee of CMS. "
+                + "<p>Thank you, Management. ";
 
         helper.setSubject(subject);
 
@@ -129,7 +132,7 @@ public class AppController {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        helper.setFrom("nonreply@cms.com", "CMS");
+        helper.setFrom("nonreply@cms.com", "Chore Management System");
         helper.setTo(recipientEmail);
 
         String subject = "You missed a Chore";
@@ -139,7 +142,8 @@ public class AppController {
                 + "<p>Please make sure that you are doing chores regularly. :</p>"
                 + "<p>Click the link below to see complete schedule :</p>"
                 + "<br>"
-                + "<p>Ignore this email if you not an employee of CMS. ";
+                + "<p>Ignore this email if you not an employee of CMS. "
+                + "<p>Thank you, Management. ";
 
         helper.setSubject(subject);
 
@@ -261,6 +265,7 @@ public class AppController {
                             newSchedule.setMan_checkoff_time(null);
                             newSchedule.setMissed(false);
                             newSchedule.setCompleted(false);
+                            newSchedule.setNotified(false);
                             scheduleRepo.save(newSchedule);
                             choreCount++;
                             k++;

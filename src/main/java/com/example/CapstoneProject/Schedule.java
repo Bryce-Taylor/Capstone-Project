@@ -70,6 +70,8 @@ public class Schedule {
     @Column(name="man_email", nullable = false, length = 100)
     private String man_email;
 
+    @Column(name="notified", nullable = false, length = 1)
+    private boolean notified;
 
     public long getId() {
         return id;
@@ -214,5 +216,13 @@ public class Schedule {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public boolean isNotified() {
+        return notified;
+    }
+
+    public void setNotified(boolean notified) {
+        this.notified = notified;
     }
 }
