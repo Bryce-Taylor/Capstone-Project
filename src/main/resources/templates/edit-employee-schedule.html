@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="ISO-8859-1">
+    <title>Welcome to CMS</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/index.css}" />
 </head>
 <body>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menu
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" th:href="@{/choreslist}">Chores</a>
+                    <a class="dropdown-item" th:href="@{/employeeList}">Employees</a>
+                    <a class="dropdown-item" th:href="@{/register}">Create New Employee</a>
+                    <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <p class="welcome text-primary"th:text="${'Hello, ' + #authentication.name}">
+        Name
+    </p>
+</nav>
+<div class="container text-center">
+    <form class="form" th:action="@{/edit-employee-schedule}" th:object="${schedule}" method="post">
+        <div class="form-group">
+            <div th:each="schedule : ${listSchedule}">
+                <div th:if="${schedule.id == id}">
+                    <h5> Selected Employee </h5>
+                    <h7  th:text="${schedule.user}"></h7>
+                </div>
+                <div th:unless="${schedule.id == id}">
+                </div>
+            </div>
+        </div>
+        <div class="form-group" style="margin-left: 25rem; margin-right: 25rem;">
+            <select class="form-control" th:field="${schedule.user}"  id="dropOperator" th:name="user1">
+                <option value="0">Select Employee to Switch</option>
+                <option  th:value="${schedule.id}" th:text="${schedule.user}"></option>
+            </select>
+        </div>
+        <button th:name="id" th:value="${id}" type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
 </body>
 </html>

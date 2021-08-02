@@ -41,7 +41,7 @@ public class AppController {
     private CustomUserDetailsService userService;
 
     @GetMapping(value = "")
-    public String viewHomePage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) throws MessagingException, UnsupportedEncodingException {
+    public String viewHomePage(@AuthenticationPrincipal CustomUserDetails userDetails,@ModelAttribute("schedule") Schedule schedule, Model model) throws MessagingException, UnsupportedEncodingException {
         List<User> listUser = userService.getAllUsers();
         if (userDetails == null) {
             return "home";
@@ -54,9 +54,12 @@ public class AppController {
             makeSchedule();
             List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
             model.addAttribute("currentSchedule", currentSchedule);
+            List<User> listUsers = (List<User>) userRepo.findAll();
+            model.addAttribute("user", listUsers);
         } else {
             List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
             model.addAttribute("currentSchedule", currentSchedule);
+
         }
         for (User list : listUser) {
             if (user.getUsername().equals(list.getUsername()) &&
@@ -81,6 +84,10 @@ public class AppController {
                         }
                     }
                 }
+                List<User> listOfEmployees = (List<User>) userRepo.findAll();
+                listOfEmployees.removeIf(users -> !users.getRole().equals("User"));
+                model.addAttribute("listEmployees", listOfEmployees);
+
                 return "home_admin";
             }
             if (user.getUsername().equals(list.getUsername()) &&
@@ -129,6 +136,7 @@ public class AppController {
     }
     public void missingChoreEmail(String recipientEmail)
             throws MessagingException, UnsupportedEncodingException {
+        System.out.println(recipientEmail);
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
@@ -312,6 +320,30 @@ public class AppController {
         }
         return "redirect:/choreslist";
     }
+
+    @GetMapping("/employeeList")
+    public String listEmployee(Model model) {
+        List<Schedule> listEmployees = (List<Schedule>) scheduleRepo.findAll();
+        model.addAttribute("listEmployees", listEmployees);
+
+        return "employeeList";
+    }
+
+
+    @PostMapping("/edit-employee/{id}")
+    public String editEmployeeSchedule(String name,@PathVariable(value="id")Long id,Model model){
+        Optional<Schedule> oldEmployee = scheduleRepo.findById(id);
+        List<Schedule> listOfEmployees = (List<Schedule>) scheduleRepo.findAll();
+        model.addAttribute("listEmployees", listOfEmployees);
+        System.out.println(name);
+        if (oldEmployee.isPresent()) {
+            oldEmployee.get().setUser(name);
+            scheduleRepo.save(oldEmployee.get());
+        }
+        return "redirect:/employeeList";
+    }
+
+
     @GetMapping("/user")
     public String userProfile(Model model, @AuthenticationPrincipal CustomUserDetails userDetail){
         List<Schedule> user = (List<Schedule>) scheduleRepo.findUserByUsername(userDetail.getUsername());
