@@ -110,3 +110,7 @@ width: 100%;
 tr:nth-child(even) {
   background-color: #F0F8FF;
 }
+
+.employee{
+margin-bottom: 6px;
+}

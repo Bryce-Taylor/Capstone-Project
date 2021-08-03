@@ -44,10 +44,14 @@
                     <section th:each="schedule: ${currentSchedule}">
                         <div class="chore-entry" th:if="${schedule.chore == 'Kitchen' && schedule.week ==1}">
                             <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                            <h6 class="card-text text-secondary"  th:text="${schedule.manager}">Full Name</h6>
                             <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
 
-                            <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
-                                Edit
+                            <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                            </button>
+                            <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                                Edit Manager
                             </button>
 
                             <hr>
@@ -62,9 +66,13 @@
                 <section th:each="schedule: ${currentSchedule}">
                     <div class="chore-entry" th:if="${schedule.chore == 'Floors' && schedule.week ==1}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <h6 class="card-text text-secondary"  th:text="${schedule.manager}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
-                            Edit
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                        </button>
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            Edit Manager
                         </button>
                         <hr>
                     </div>
@@ -77,9 +85,13 @@
                 <section th:each="schedule: ${currentSchedule}">
                     <div class="chore-entry" th:if="${schedule.chore == 'Bathrooms'&& schedule.week ==1}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <h6 class="card-text text-secondary"  th:text="${schedule.manager}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
-                            Edit
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                            </button>
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            Edit Manager
                         </button>
                         <hr>
                     </div>
@@ -92,9 +104,13 @@
                 <section th:each="schedule: ${currentSchedule}">
                     <div class="chore-entry" th:if="${schedule.chore == 'Lobby' && schedule.week ==1}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <h6 class="card-text text-secondary"  th:text="${schedule.manager}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
-                            Edit
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                            </button>
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            Edit Manager
                         </button>
                         <hr>
                     </div>
@@ -107,9 +123,13 @@
                 <section th:each="schedule: ${currentSchedule}">
                     <div class="chore-entry" th:if="${schedule.chore == 'Trash'&& schedule.week == 1}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <h6 class="card-text text-secondary"  th:text="${schedule.manager}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
-                            Edit
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                            </button>
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            Edit Manager
                         </button>
                         <hr>
                     </div>
@@ -127,9 +147,13 @@
                 <section th:each="schedule: ${currentSchedule}">
                     <div class="chore-entry" th:if="${schedule.chore == 'Kitchen' && schedule.week == 2}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <h6 class="card-text text-secondary"  th:text="${schedule.manager}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
-                            Edit
+                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                            </button>
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            Edit Manager
                         </button>
                         <hr>
                     </div>
@@ -142,9 +166,13 @@
                 <section th:each="schedule: ${currentSchedule}">
                     <div class="chore-entry" th:if="${schedule.chore == 'Floors' && schedule.week == 2}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <h6 class="card-text text-secondary"  th:text="${schedule.manager}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
-                            Edit
+                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                            </button>
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            Edit Manager
                         </button>
                         <hr>
                     </div>
@@ -157,9 +185,13 @@
                 <section th:each="schedule: ${currentSchedule}">
                     <div class="chore-entry" th:if="${schedule.chore == 'Bathrooms'&& schedule.week == 2}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <h6 class="card-text text-secondary"  th:text="${schedule.manager}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
-                            Edit
+                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                            </button>
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            Edit Manager
                         </button>
                         <hr>
                     </div>
@@ -172,9 +204,13 @@
                 <section th:each="schedule: ${currentSchedule}">
                     <div class="chore-entry" th:if="${schedule.chore == 'Lobby' && schedule.week == 2}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <h6 class="card-text text-secondary"  th:text="${schedule.manager}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
-                            Edit
+                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                         </button>
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            Edit Manager
                         </button>
                         <hr>
                     </div>
@@ -187,9 +223,13 @@
                 <section th:each="schedule: ${currentSchedule}">
                     <div class="chore-entry" th:if="${schedule.chore == 'Trash'&& schedule.week == 2}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
+                        <h6 class="card-text text-secondary"  th:text="${schedule.manager}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
-                            Edit
+                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                         </button>
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            Edit Manager
                         </button>
                         <hr>
                     </div>
@@ -199,13 +239,13 @@
     </ul>
 </div>
 
-<!--MODAL-->
-<div class="modal fade" id="editing" tabindex="-1" role="dialog" aria-labelledby="editingLabel" aria-hidden="true">
+<!--MODAL-EMPLOYEE-->
+<div class="modal fade" id="editingEmployee" tabindex="-1" role="dialog" aria-labelledby="editingEmployeeLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="user-edit-form" th:object="${listEmployees}" method="POST">
+            <form id="employee-edit-form" th:object="${listEmployees}" method="POST">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editingLabel">New message</h5>
+                    <h5 class="modal-title" id="editingEmployeeLabel">New message</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -214,7 +254,7 @@
                         <div class="form-group">
                             <input type="hidden" name="id"/>
                             <p> Name </p>
-                            <select class="form-control"  id="dropOperator" th:name="name" required>
+                            <select class="form-control"  id="dropOperatorForEmployee" th:name="name" required>
                                 <option value="0">Select Employee to Switch</option>
                                 <option  th:each="user: ${listEmployees}" th:value="${user.getFullName()}" th:text="${user.getFullName()}"></option>
                             </select>
@@ -228,13 +268,44 @@
         </div>
     </div>
 </div>
+<!--MODAL-MANAGER-->
+<div class="modal fade" id="editingManger" tabindex="-1" role="dialog" aria-labelledby="editingMangerLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="manager-edit-form" th:object="${listManagers}" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editingMangerLabel">New message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="hidden" name="id"/>
+                        <p> Name </p>
+                        <select class="form-control"  id="dropOperatorForManager" th:name="name" required>
+                            <option value="0">Select Employee to Switch</option>
+                            <option  th:each="user: ${listManagers}" th:value="${user.getFullName()}" th:text="${user.getFullName()}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript">
-var editButtons = document.querySelectorAll('.chore-entry .btn');
-var editNameSelector = document.getElementById('dropOperator');
+var editEmployeeButtons = document.querySelectorAll('.chore-entry .employee');
+var editManagerButtons = document.querySelectorAll('.chore-entry .manager');
+
+var editNameSelector = document.getElementById('dropOperatorForEmployee');
+var editNameSelectorForManager = document.getElementById('dropOperatorForManager');
 var updateName = '';
 var userId;
 var save = document.getElementById('save-button');
@@ -245,14 +316,32 @@ editNameSelector.addEventListener('change', () => {
     updateName = text;
     console.log(userId);
     console.log("this be de name: " + updateName);
-    var form = document.getElementById('user-edit-form');
+    var form = document.getElementById('employee-edit-form');
     window.location.href ='/edit-employee/' + + userId + '?name='+ updateName
     });
 
-editButtons.forEach((element) => {
+editEmployeeButtons.forEach((element) => {
     element.addEventListener('click', () => {
         editNameSelector.selectedIndex = 0
         console.log("Only be zero: " + editNameSelector.selectedIndex)
+        userId = element.getAttribute('value');
+        console.log('edit button clicked, id: ' + userId);
+    });
+});
+editNameSelectorForManager.addEventListener('change', () => {
+    var text = editNameSelectorForManager.options[editNameSelectorForManager.selectedIndex].text;
+    updateName = text;
+    console.log(userId);
+    console.log("this be de name: " + updateName);
+    var form = document.getElementById('employee-edit-form');
+    window.location.href ='/edit-manager/' + + userId + '?name='+ updateName
+    });
+var form = document.getElementById('manager-edit-form');
+
+editManagerButtons.forEach((element) => {
+    element.addEventListener('click', () => {
+        editNameSelectorForManager.selectedIndex = 0
+        console.log("Only be zero: " + editNameSelectorForManager.selectedIndex)
         userId = element.getAttribute('value');
         console.log('edit button clicked, id: ' + userId);
     });
