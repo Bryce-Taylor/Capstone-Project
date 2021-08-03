@@ -16,19 +16,12 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Menu
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/choreslist}">Chores</a>
-                        <a class="dropdown-item" th:href="@{/employeeList}">Employees</a>
-                        <a class="dropdown-item" th:href="@{/register}">Create New Employee</a>
-                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
-                    </div>
-                </li>
-            </ul>
+                <a class="nav-link" th:href="@{/register}">Create New Employee</a>
+
+                <a class="nav-link" th:href="@{/choreslist}">Chores</a>
+
+                <a class="nav-link" th:href="@{/logout}">Logout</a>
+
         </div>
         <p class="welcome text-primary"th:text="${'Hello, ' + #authentication.name}">
             Name
@@ -85,7 +78,7 @@
                     <div class="chore-entry" th:if="${schedule.chore == 'Bathrooms'&& schedule.week ==1}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
                             Edit
                         </button>
                         <hr>
@@ -100,7 +93,7 @@
                     <div class="chore-entry" th:if="${schedule.chore == 'Lobby' && schedule.week ==1}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
                             Edit
                         </button>
                         <hr>
@@ -115,7 +108,7 @@
                     <div class="chore-entry" th:if="${schedule.chore == 'Trash'&& schedule.week == 1}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
                             Edit
                         </button>
                         <hr>
@@ -135,7 +128,7 @@
                     <div class="chore-entry" th:if="${schedule.chore == 'Kitchen' && schedule.week == 2}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
+                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
                             Edit
                         </button>
                         <hr>
@@ -150,7 +143,7 @@
                     <div class="chore-entry" th:if="${schedule.chore == 'Floors' && schedule.week == 2}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
+                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
                             Edit
                         </button>
                         <hr>
@@ -165,7 +158,7 @@
                     <div class="chore-entry" th:if="${schedule.chore == 'Bathrooms'&& schedule.week == 2}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
+                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
                             Edit
                         </button>
                         <hr>
@@ -180,7 +173,7 @@
                     <div class="chore-entry" th:if="${schedule.chore == 'Lobby' && schedule.week == 2}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
+                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
                             Edit
                         </button>
                         <hr>
@@ -195,7 +188,7 @@
                     <div class="chore-entry" th:if="${schedule.chore == 'Trash'&& schedule.week == 2}">
                         <h6 class="card-text text-primary"  th:text="${schedule.user}">Full Name</h6>
                        <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
+                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing">
                             Edit
                         </button>
                         <hr>
@@ -205,35 +198,8 @@
         </div>
     </ul>
 </div>
-<!-- Modal -->
-<!--<div  class="modal fade" id="editing" tabindex="-1" role="dialog" aria-labelledby="editingLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog" role="document">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--                <h5 class="modal-title" id="editingLabel">Edit User</h5>-->
-<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                    <span aria-hidden="true">&times;</span>-->
-<!--                </button>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-<!--                <form class="form" th:action="@{/edit-employee/+ {id}}" th:object="${listEmployees}" method="post">-->
-<!--                    <div class="form-group" style="margin-left: 25rem; margin-right: 25rem;">-->
-<!--                        <select class="form-control" th:field="${listEmployees.user}"  id="dropOperator" th:name="user1">-->
-<!--                            <option value="0">Select Employee to Switch</option>-->
-<!--                            <option  th:value="${listEmployees.id}" th:text="${listEmployees.user}"></option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                    <button th:name="id" th:value="*{id}" type="submit" class="btn btn-primary">Update</button>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--            <div class="modal-footer">-->
-<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editing" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
 
+<!--MODAL-->
 <div class="modal fade" id="editing" tabindex="-1" role="dialog" aria-labelledby="editingLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -248,23 +214,15 @@
                         <div class="form-group">
                             <input type="hidden" name="id"/>
                             <p> Name </p>
-                            <select class="form-control"  id="dropOperator" name="name" required>
+                            <select class="form-control"  id="dropOperator" th:name="name" required>
                                 <option value="0">Select Employee to Switch</option>
                                 <option  th:each="user: ${listEmployees}" th:value="${user.getFullName()}" th:text="${user.getFullName()}"></option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Recipient:</label>
-                            <input type="text" class="form-control" id="recipient-name">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea class="form-control" id="message-text"></textarea>
-                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" >Save</button>
+<!--                    <button id="save-button" type="submit" class="btn btn-primary" >Save</button>-->
                 </div>
             </form>
         </div>
@@ -276,13 +234,27 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript">
 var editButtons = document.querySelectorAll('.chore-entry .btn');
+var editNameSelector = document.getElementById('dropOperator');
+var updateName = '';
+var userId;
+var save = document.getElementById('save-button');
+
+console.log(updateName);
+editNameSelector.addEventListener('change', () => {
+    var text = editNameSelector.options[editNameSelector.selectedIndex].text;
+    updateName = text;
+    console.log(userId);
+    console.log("this be de name: " + updateName);
+    var form = document.getElementById('user-edit-form');
+    window.location.href ='/edit-employee/' + + userId + '?name='+ updateName
+    });
+
 editButtons.forEach((element) => {
     element.addEventListener('click', () => {
-        var userId = element.getAttribute('value');
+        editNameSelector.selectedIndex = 0
+        console.log("Only be zero: " + editNameSelector.selectedIndex)
+        userId = element.getAttribute('value');
         console.log('edit button clicked, id: ' + userId);
-        var form = document.getElementById('user-edit-form');
-        form['id'].setAttribute('value', userId);
-        form.setAttribute('action', '/edit-employee/' + userId);
     });
 });
 </script>

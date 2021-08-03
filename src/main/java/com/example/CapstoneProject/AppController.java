@@ -94,6 +94,9 @@ public class AppController {
             }
             if (user.getUsername().equals(list.getUsername()) &&
                     user.getRole().equals("Manager")) {
+                List<User> listOfEmployees = (List<User>) userRepo.findAll();
+                listOfEmployees.removeIf(users -> !users.getRole().equals("User"));
+                model.addAttribute("listEmployees", listOfEmployees);
                 return "home_manager";
             }
         }
@@ -356,17 +359,21 @@ public class AppController {
     }
 
 
-    @PostMapping("/edit-employee/{id}")
-    public String editEmployeeSchedule(String name,@PathVariable(value="id")Long id,Model model){
+    @GetMapping("/edit-employee/{id}")
+    public String editEmployeeSchedule(@RequestParam(name = "name") String name,@PathVariable(value="id")Long id,Model model){
         Optional<Schedule> oldEmployee = scheduleRepo.findById(id);
-        List<Schedule> listOfEmployees = (List<Schedule>) scheduleRepo.findAll();
-        model.addAttribute("listEmployees", listOfEmployees);
-        System.out.println(name);
+        List<User> listOfEmployees = (List<User>) userRepo.findAll();
         if (oldEmployee.isPresent()) {
             oldEmployee.get().setUser(name);
+            for (User user : listOfEmployees) {
+                if (name.equals(user.getFullName())) {
+                    oldEmployee.get().setUsername(user.getUsername());
+                    oldEmployee.get().setUser_email(user.getEmail());
+                }
+            }
             scheduleRepo.save(oldEmployee.get());
         }
-        return "redirect:/employeeList";
+        return "redirect:/";
     }
 
 
