@@ -73,7 +73,7 @@ public class AppController {
                         if (!currSchedule.get(chore).isUser_checked() || !currSchedule.get(chore).isMan_checked()) {
                             if (!currSchedule.get(chore).isNotified()){
                                 missingChoreEmail(currSchedule.get(chore).getUser_email());
-                                missingChoreEmail(currSchedule.get(chore).getMan_email());
+                                missingChoreEmailManager(currSchedule.get(chore).getMan_email(),currSchedule.get(chore).getUser());
                                 currSchedule.get(chore).setMissed(true);
                                 currSchedule.get(chore).setNotified(true);
                                 scheduleRepo.save(currSchedule.get(chore));
@@ -81,6 +81,8 @@ public class AppController {
                         }else if (currSchedule.get(chore).isUser_checked() && currSchedule.get(chore).isMan_checked()){
                             currSchedule.get(chore).setCompleted(true);
                             scheduleRepo.save(currSchedule.get(chore));
+                        }else if (currSchedule.get(chore).isUser_checked() && !currSchedule.get(chore).isMan_checked()){
+                            missingChoreEmail(currSchedule.get(chore).getMan_email());
                         }
                     }
                 }
@@ -146,8 +148,32 @@ public class AppController {
         String subject = "You missed a Chore";
 
         String content = "<p>Hello,</p>"
-                + "<p>This email was written to inform you that you missed a chore!</p>"
-                + "<p>Please make sure that you are doing chores regularly. :</p>"
+                + "<p>This email was written to inform you that you missed a chore yesterday!</p>"
+                + "<p>Please make sure that you are doing chores according to schedule. :</p>"
+                + "<p>Click the link below to see complete schedule :</p>"
+                + "<br>"
+                + "<p>Ignore this email if you not an employee of CMS. "
+                + "<p>Thank you, Management. ";
+
+        helper.setSubject(subject);
+
+        helper.setText(content, true);
+
+        mailSender.send(message);
+    }
+    public void missingChoreEmailManager(String recipientEmail, String name)
+            throws MessagingException, UnsupportedEncodingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom("nonreply@cms.com", "Chore Management System");
+        helper.setTo(recipientEmail);
+
+        String subject = "You missed a Chore";
+
+        String content = "<p>Hello,</p>"
+                + "<p>This email was written to inform you that " + name + " missed a chore yesterday!</p>"
+                + "<p>Please make sure that all employees are doing chores according to schedule. :</p>"
                 + "<p>Click the link below to see complete schedule :</p>"
                 + "<br>"
                 + "<p>Ignore this email if you not an employee of CMS. "
@@ -384,7 +410,6 @@ public class AppController {
             c.setMan_checked(false);
             c.setMan_checkoff_time(null);
         }
-
         scheduleRepo.save(c);
         return "redirect:/manager";
     }
@@ -407,4 +432,5 @@ public class AppController {
         }
         return "redirect:/";
     }
+
 }

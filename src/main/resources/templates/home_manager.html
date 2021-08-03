@@ -16,7 +16,6 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <a class="dropdown-item" href="/">Change Password</a>
             <a class=" dropdown-item " th:href="@{/logout}">Logout</a>
             <p class="welcome-manager text-primary"th:text="${'Hello, ' + #authentication.name}">
                 Name
@@ -24,6 +23,16 @@
             <a href="/manager"><img src="https://cdn.iconscout.com/icon/free/png-512/account-269-866236.png" width="35" alt="Account"></a>
         </div>
     </nav>
+    <div class="toast ml-auto" role="alert" data-delay="700" data-autohide="false">
+        <div class="toast-header">
+            <strong class="mr-auto text-primary">Management</strong>
+            <small class="text-muted">now</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body"> Make sure to check off chores in user profile. </div>
+    </div>
     <h1 class="heading">Manager</h1>
 </div>
 <div sec:authorize="isAnonymous()" class="container text-center primary">
@@ -175,3 +184,10 @@
 </div>
 </body>
 </html>
+<script>
+    $(document).ready(function() {
+        $(".toast").toast('show');
+
+    });
+
+</script>
