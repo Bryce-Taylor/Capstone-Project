@@ -380,11 +380,18 @@ public class AppController {
     }
 
     @GetMapping("/edit-manager/{id}")
-    public String editManagerSchedule(@RequestParam(name = "name") String name,@PathVariable(value="id")Long id,Model model){
+    public String editManagerSchedule(@RequestParam(name = "name") String name,@RequestParam(name = "day") String day, @RequestParam(name = "chore") String chore,@PathVariable(value="id")Long id,Model model){
         Optional<Schedule> oldEmployee = scheduleRepo.findById(id);
         List<User> listOfEmployees = (List<User>) userRepo.findAll();
+        List<Schedule> listOfSchedules = (List<Schedule>) scheduleRepo.findAll();
+        LocalDate localDay = LocalDate.parse(day);
         if (oldEmployee.isPresent()) {
-            oldEmployee.get().setManager(name);
+            for (Schedule schedule: listOfSchedules) {
+                if(chore.equals(schedule.getChore()) && localDay.equals(schedule.getDay())){
+                    schedule.setManager(name);
+                }
+            }
+
             for (User user : listOfEmployees) {
                 if (name.equals(user.getFullName())) {
                     oldEmployee.get().setMan_username(user.getUsername());

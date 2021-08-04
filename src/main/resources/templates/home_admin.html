@@ -50,7 +50,7 @@
                             <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                             </button>
-                            <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
                                 Edit Manager
                             </button>
 
@@ -71,7 +71,7 @@
                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                         </button>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
                             Edit Manager
                         </button>
                         <hr>
@@ -90,7 +90,7 @@
                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                             </button>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
                             Edit Manager
                         </button>
                         <hr>
@@ -109,7 +109,7 @@
                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                             </button>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
                             Edit Manager
                         </button>
                         <hr>
@@ -128,7 +128,7 @@
                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                             </button>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
                             Edit Manager
                         </button>
                         <hr>
@@ -152,7 +152,7 @@
                          <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                             </button>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
                             Edit Manager
                         </button>
                         <hr>
@@ -171,7 +171,7 @@
                          <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                             </button>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
                             Edit Manager
                         </button>
                         <hr>
@@ -190,7 +190,7 @@
                          <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                             </button>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
                             Edit Manager
                         </button>
                         <hr>
@@ -209,7 +209,7 @@
                          <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                          </button>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
                             Edit Manager
                         </button>
                         <hr>
@@ -228,7 +228,7 @@
                          <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                          </button>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
                             Edit Manager
                         </button>
                         <hr>
@@ -308,6 +308,8 @@ var editNameSelector = document.getElementById('dropOperatorForEmployee');
 var editNameSelectorForManager = document.getElementById('dropOperatorForManager');
 var updateName = '';
 var userId;
+var day;
+var chore;
 var save = document.getElementById('save-button');
 
 console.log(updateName);
@@ -328,21 +330,25 @@ editEmployeeButtons.forEach((element) => {
         console.log('edit button clicked, id: ' + userId);
     });
 });
+
 editNameSelectorForManager.addEventListener('change', () => {
     var text = editNameSelectorForManager.options[editNameSelectorForManager.selectedIndex].text;
     updateName = text;
     console.log(userId);
     console.log("this be de name: " + updateName);
     var form = document.getElementById('employee-edit-form');
-    window.location.href ='/edit-manager/' + + userId + '?name='+ updateName
+    window.location.href ='/edit-manager/' + + userId + '?name='+ updateName +'&day='+ day +'&chore='+ chore
     });
-var form = document.getElementById('manager-edit-form');
 
 editManagerButtons.forEach((element) => {
     element.addEventListener('click', () => {
         editNameSelectorForManager.selectedIndex = 0
         console.log("Only be zero: " + editNameSelectorForManager.selectedIndex)
         userId = element.getAttribute('value');
+        chore = element.getAttribute('chore');
+        day = element.getAttribute('day');
+        console.log(chore);
+        console.log(day);
         console.log('edit button clicked, id: ' + userId);
     });
 });
