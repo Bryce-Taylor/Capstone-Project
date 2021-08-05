@@ -23,7 +23,6 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="chores">View Chore Descriptions</a>
-            <a class="dropdown-item" href="/">Change Password</a>
             <a class="dropdown-item" th:href="@{/logout}">Logout</a>
           </div>
         </li>
@@ -38,12 +37,13 @@
   <h1 class="heading">Your Chores</h1>
   <ul class="schedule-grid " style="padding-top: 30px;">
     <section th:each="schedule: ${user}">
-      <div class="card" style="width: 30rem;">
+      <div class="card" style="width: 15rem;">
         <div class="card-body ">
           <h5 class="card-subtitle mb-2" th:text="${'Week ' + schedule.week}">Week</h5>
           <h6 class="text-primary" th:text="${schedule.user}">User</h6>
           <h6 class="card-subtitle mb-2 text-muted" th:text="${schedule.day}">Day</h6>
           <p class="card-text"  th:text="${'Chore: ' + schedule.chore}">Chore</p>
+          <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
           <div th:if="${schedule.missed !=  true && schedule.completed == false }">
               <div th:if="${schedule.user_checked ==  false}">
                   <a class="btn btn-primary" th:href="@{'/check-off/' + ${schedule.id}}">Check-off chore</a>

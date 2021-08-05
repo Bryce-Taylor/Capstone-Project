@@ -27,5 +27,9 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
     @Query("SELECT schedule FROM Schedule schedule WHERE schedule.day = ?1")
     public List<Schedule> findByDay(LocalDate day);
 
+    @Query("SELECT schedule FROM Schedule schedule WHERE schedule.chore = ?1")
+    public List<Schedule> findByChore(String chore);
+
+
     public void deleteAll();
 }

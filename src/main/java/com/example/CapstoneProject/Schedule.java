@@ -225,4 +225,5 @@ public class Schedule {
     public void setNotified(boolean notified) {
         this.notified = notified;
     }
+
 }

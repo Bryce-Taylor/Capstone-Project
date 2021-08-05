@@ -110,6 +110,9 @@ width: 100%;
 tr:nth-child(even) {
   background-color: #F0F8FF;
 }
+.nav-link{
+color:black;
+}
 
 .employee{
 margin-bottom: 6px;
