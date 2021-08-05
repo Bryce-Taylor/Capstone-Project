@@ -12,9 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 import java.io.UnsupportedEncodingException;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -48,15 +48,22 @@ public class AppController {
         }
         User user = userDetails.getUser(userDetails.getUsername());
         LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.of(2021, 8, 7);;
         List<Schedule> currSchedule = (List<Schedule>) scheduleRepo.findAll();
         if (today.isAfter(currSchedule.get(0).getEnd_date()) ||  currSchedule.size() == 0){
+            managerScoreCards();
             scheduleRepo.deleteAll();
             makeSchedule();
             List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
             model.addAttribute("currentSchedule", currentSchedule);
             List<User> listUsers = (List<User>) userRepo.findAll();
             model.addAttribute("user", listUsers);
-        } else {
+        }else if((today.getDayOfYear()/7)% 2 == 0 && today.getDayOfWeek().equals(DayOfWeek.SATURDAY)){
+            managerScoreCards();
+            System.out.println("hey");
+            List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
+            model.addAttribute("currentSchedule", currentSchedule);
+        }else {
             List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
             model.addAttribute("currentSchedule", currentSchedule);
 
@@ -92,7 +99,6 @@ public class AppController {
                 List<User> listOfManager = (List<User>) userRepo.findAll();
                 listOfManager.removeIf(users -> !users.getRole().equals("Manager"));
                 model.addAttribute("listManagers", listOfManager);
-
                 return "home_admin";
             }
             if (user.getUsername().equals(list.getUsername()) &&
@@ -465,6 +471,157 @@ public class AppController {
             scheduleRepo.save(oldPerson.get());
         }
         return "redirect:/";
+    }
+
+
+    public void employeeScoreCard(String recipientEmail,String name , double percent, double overall)
+            throws MessagingException, UnsupportedEncodingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom("nonreply@cms.com", "Chore Management System");
+        helper.setTo(recipientEmail);
+
+        String subject = "Weekly Scorecard";
+
+        String content = "<p>Hello,</p>"
+                + "<p>The weekly percentage for "+ name+ " was "+ percent+"% this week</p>"
+                + "<p>The overall group performance "+ overall +"% </p>"
+                + "<p>Thank you, Management. ";
+
+        helper.setSubject(subject);
+
+        helper.setText(content, true);
+
+        mailSender.send(message);
+    }
+
+    public void employeeScoreCards() throws MessagingException, UnsupportedEncodingException {
+        List<User> listOfUsers = (List<User>) userRepo.findAll();
+        listOfUsers.removeIf(user -> !user.getRole().equals("User"));
+        LocalDate today = LocalDate.now();
+        for (User listOfUser : listOfUsers) {
+            int counterWeek1 = 0;
+            int counterWeek2 = 0;
+            int week1 = 0;
+            int week2 = 0;
+            List<Schedule> chore = (List<Schedule>) scheduleRepo.findUserByUsername(listOfUser.getUsername());
+            for (Schedule value : chore) {
+                if(value.getWeek() == 1){
+                    if (value.isUser_checked()) {
+                        counterWeek1 += 1;
+                        week1++;
+                    }else{
+                        if(value.getWeek() == 1) {
+                            week1++;
+                        }
+                    }
+                }else{
+                    if (value.isUser_checked() && value.getWeek() == 2) {
+                        counterWeek2 += 1;
+                        week2++;
+                    }else{
+                        if(value.getWeek() == 2) {
+                            week2++;
+                        }
+                    }
+                }
+            }
+            if((today.getDayOfYear()/7) % 2 == 0 && !(week1 == 0)){
+                double percentageWeek1 = (counterWeek1 / (double) week1 * 100);
+                System.out.println("Employee: " + listOfUser.getFullName() + " Score:" + percentageWeek1);
+//                employeeScoreCard(listOfUser.getEmail(),listOfUser.getFullName(),percentageWeek1, overallPercentage());
+
+            }else if((today.getDayOfYear()/7) % 2 == 1 && !(week2 == 0)){
+                double percentageWeek2 = (counterWeek2 / (double) week2 * 100);
+                System.out.println("Employee: " + listOfUser.getFullName() + " Score:" + percentageWeek2);
+//                employeeScoreCard(listOfUser.getEmail(),listOfUser.getFullName(),percentageWeek2, overallPercentage());
+            }
+            System.out.println("[Week 1: "+week1+ "] [Week 2: "+week2+"]");
+        }
+    }
+
+    public void managerScoreCard(String recipientEmail,String name , double percent, double overall)
+            throws MessagingException, UnsupportedEncodingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom("nonreply@cms.com", "Chore Management System");
+        helper.setTo(recipientEmail);
+
+        String subject = "Weekly Scorecard";
+
+        String content = "<p>Hello,</p>"
+                + "<p>The weekly percentage for "+ name+ " was "+ percent+"% this week</p>"
+                + "<p>The overall group performance "+ overall +"% </p>"
+                + "<p>Thank you, Management. ";
+
+        helper.setSubject(subject);
+
+        helper.setText(content, true);
+
+        mailSender.send(message);
+    }
+
+    public void managerScoreCards() throws MessagingException, UnsupportedEncodingException {
+        List<User> listOfUsers = (List<User>) userRepo.findAll();
+        listOfUsers.removeIf(user -> !user.getRole().equals("Manager"));
+        LocalDate today = LocalDate.now();
+        for (User listOfUser : listOfUsers) {
+            int counterWeek1 = 0;
+            int counterWeek2 = 0;
+            int week1 = 0;
+            int week2 = 0;
+            List<Schedule> chore = (List<Schedule>) scheduleRepo.findUserByman_username(listOfUser.getUsername());
+            for (Schedule value : chore) {
+                if(value.getWeek() == 1){
+                    if (value.isMan_checked()) {
+                        counterWeek1 += 1;
+                        week1++;
+                    }else{
+                        if(value.getWeek() == 1) {
+                            week1++;
+                        }
+                    }
+                }else{
+                    if (value.isMan_checked() && value.getWeek() == 2) {
+                        counterWeek2 += 1;
+                        week2++;
+                    }else{
+                        if(value.getWeek() == 2) {
+                            week2++;
+                        }
+                    }
+                }
+
+            }
+            if((today.getDayOfYear()/7) % 2 == 0){
+                double percentageWeek1 = (counterWeek1 / (double) week1 * 100);
+                System.out.println("Manager:" + listOfUser.getFullName() + " Score:" + percentageWeek1);
+//                managerScoreCard(listOfUser.getEmail(),listOfUser.getFullName(),percentageWeek1, overallPercentage());
+
+            }else{
+                double percentageWeek2 = (counterWeek2 / (double) week2 * 100);
+                System.out.println("Manager:" + listOfUser.getFullName() + " Score:" + percentageWeek2);
+//                managerScoreCard(listOfUser.getEmail(),listOfUser.getFullName(),percentageWeek2, overallPercentage());
+            }
+
+            System.out.println("[Week 1: "+week1+ "] [Week 2: "+week2+"]");
+
+
+        }
+    }
+
+    public double overallPercentage(){
+        int count = 0;
+        List<Schedule> currSchedule = (List<Schedule>) scheduleRepo.findAll();
+        for (int j = 0; j < currSchedule.size(); j++){
+            if (currSchedule.get(j).isUser_checked()){
+                count+=1;
+            }
+        }
+        double percent = (count/(double) currSchedule.size()) * 100;
+        return percent;
     }
 
 }
