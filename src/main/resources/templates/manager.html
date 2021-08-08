@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <div th:if="${schedule.user_checked ==  true}">
+            <div th:if="${schedule.user_checked ==  true && !schedule.missed  && !schedule.completed}">
                 <div class="card" style="width: 15rem;">
                     <div class="card-body ">
                         <h5 class="card-subtitle mb-2" th:text="${'Week ' + schedule.week}">Week</h5>
