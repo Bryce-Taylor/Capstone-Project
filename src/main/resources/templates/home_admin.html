@@ -39,13 +39,13 @@
     <ul class="schedule-grid " style="padding-top: 30px;">
         <div class="card" style="width: 15rem;">
             <div class="card-body">
-                <h3>Kitchen</h3>
+                <h3>Monday</h3>
                 <div>
                     <section th:each="schedule: ${currentSchedule}">
-                        <div class="chore-entry" th:if="${schedule.chore == 'Kitchen' && schedule.week ==1}">
+                        <div class="chore-entry" th:if="${#temporals.dayOfWeekName(schedule.day) == 'Monday' && schedule.week == 1}">
                             <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                             <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
-                            <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                            <p class="card-text"  th:text="${schedule.chore}">Chore</p>
 
                             <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
@@ -62,12 +62,12 @@
         </div>
         <div class="card" style="width: 15rem;">
             <div class="card-body">
-                <h3>Floors</h3>
+                <h3>Tuesday</h3>
                 <section th:each="schedule: ${currentSchedule}">
-                    <div class="chore-entry" th:if="${schedule.chore == 'Floors' && schedule.week ==1}">
+                    <div class="chore-entry" th:if="${#temporals.dayOfWeekName(schedule.day)== 'Tuesday' && schedule.week ==1}">
                         <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                         <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
-                       <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <p class="card-text"  th:text="${schedule.chore}">Chore</p>
                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                         </button>
@@ -81,12 +81,31 @@
         </div>
         <div class="card" style="width: 15rem;">
             <div class="card-body">
-                <h3>Bathrooms</h3>
+                <h3>Wednesday</h3>
                 <section th:each="schedule: ${currentSchedule}">
-                    <div class="chore-entry" th:if="${schedule.chore == 'Bathrooms'&& schedule.week ==1}">
+                    <div class="chore-entry" th:if="${#temporals.dayOfWeekName(schedule.day)== 'Wednesday' && schedule.week ==1}">
                         <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                         <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
-                       <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <p class="card-text"  th:text="${schedule.chore}">Chore</p>
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                        </button>
+                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            Edit Manager
+                        </button>
+                        <hr>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body">
+               <h3>Thursday</h3>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div class="chore-entry" th:if="${#temporals.dayOfWeekName(schedule.day)== 'Thursday' && schedule.week ==1}">
+                        <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
+                        <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
+                        <p class="card-text"  th:text="${schedule.chore}">Chore</p>
                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                             </button>
@@ -100,34 +119,15 @@
         </div>
         <div class="card" style="width: 15rem;">
             <div class="card-body">
-                <h3>Lobby</h3>
+                <h3>Friday</h3>
                 <section th:each="schedule: ${currentSchedule}">
-                    <div class="chore-entry" th:if="${schedule.chore == 'Lobby' && schedule.week ==1}">
+                    <div class="chore-entry" th:if="${#temporals.dayOfWeekName(schedule.day) == 'Friday' && schedule.week == 1}">
                         <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                         <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
-                       <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <p class="card-text"  th:text="${schedule.chore}">Chore</p>
                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
-                            </button>
-                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
-                            Edit Manager
                         </button>
-                        <hr>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="card" style="width: 15rem;">
-            <div class="card-body">
-                <h3>Trash</h3>
-                <section th:each="schedule: ${currentSchedule}">
-                    <div class="chore-entry" th:if="${schedule.chore == 'Trash'&& schedule.week == 1}">
-                        <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
-                        <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
-                       <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
-                                Edit Employee
-                            </button>
                         <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
                             Edit Manager
                         </button>
@@ -143,69 +143,12 @@
     <ul class="schedule-grid " style="padding-top: 30px;">
         <div class="card" style="width: 15rem;">
             <div class="card-body">
-                <h3>Kitchen</h3>
+                <h3>Monday</h3>
                 <section th:each="schedule: ${currentSchedule}">
-                    <div class="chore-entry" th:if="${schedule.chore == 'Kitchen' && schedule.week == 2}">
+                    <div class="chore-entry" th:if="${#temporals.dayOfWeekName(schedule.day)== 'Monday' && schedule.week == 2}">
                         <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                         <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
-                       <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
-                                Edit Employee
-                            </button>
-                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
-                            Edit Manager
-                        </button>
-                        <hr>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="card" style="width: 15rem;">
-            <div class="card-body">
-                <h3>Floors</h3>
-                <section th:each="schedule: ${currentSchedule}">
-                    <div class="chore-entry" th:if="${schedule.chore == 'Floors' && schedule.week == 2}">
-                        <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
-                        <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
-                       <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
-                                Edit Employee
-                            </button>
-                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
-                            Edit Manager
-                        </button>
-                        <hr>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="card" style="width: 15rem;">
-            <div class="card-body">
-                <h3>Bathrooms</h3>
-                <section th:each="schedule: ${currentSchedule}">
-                    <div class="chore-entry" th:if="${schedule.chore == 'Bathrooms'&& schedule.week == 2}">
-                        <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
-                        <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
-                       <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
-                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
-                                Edit Employee
-                            </button>
-                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
-                            Edit Manager
-                        </button>
-                        <hr>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="card" style="width: 15rem;">
-            <div class="card-body">
-                <h3>Lobby</h3>
-                <section th:each="schedule: ${currentSchedule}">
-                    <div class="chore-entry" th:if="${schedule.chore == 'Lobby' && schedule.week == 2}">
-                        <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
-                        <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
-                       <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <p class="card-text"  th:text="${schedule.chore}">Chore</p>
                          <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                          </button>
@@ -219,15 +162,72 @@
         </div>
         <div class="card" style="width: 15rem;">
             <div class="card-body">
-                <h3>Trash</h3>
+                <h3>Tuesday</h3>
                 <section th:each="schedule: ${currentSchedule}">
-                    <div class="chore-entry" th:if="${schedule.chore == 'Trash'&& schedule.week == 2}">
+                    <div class="chore-entry" th:if="${#temporals.dayOfWeekName(schedule.day)== 'Tuesday' && schedule.week == 2}">
                         <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                         <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
-                       <p class="card-text"  th:text="${#temporals.dayOfWeekName(schedule.day)}">Day</p>
+                        <p class="card-text"  th:text="${schedule.chore}">Chore</p>
                          <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                          </button>
+                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            Edit Manager
+                        </button>
+                        <hr>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body">
+                <h3>Wednesday</h3>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div class="chore-entry" th:if="${#temporals.dayOfWeekName(schedule.day)== 'Wednesday'&& schedule.week == 2}">
+                        <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
+                        <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
+                        <p class="card-text"  th:text="${schedule.chore}">Chore</p>
+                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                            </button>
+                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            Edit Manager
+                        </button>
+                        <hr>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body">
+               <h3>Thursday</h3>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div class="chore-entry" th:if="${#temporals.dayOfWeekName(schedule.day)== 'Thursday' && schedule.week == 2}">
+                        <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
+                        <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
+                        <p class="card-text"  th:text="${schedule.chore}">Chore</p>
+                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                         </button>
+                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                            Edit Manager
+                        </button>
+                        <hr>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card" style="width: 15rem;">
+            <div class="card-body">
+                <h3>Friday</h3>
+                <section th:each="schedule: ${currentSchedule}">
+                    <div class="chore-entry" th:if="${#temporals.dayOfWeekName(schedule.day)== 'Friday'&& schedule.week == 2}">
+                        <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
+                        <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
+                        <p class="card-text"  th:text="${schedule.chore}">Chore</p>
+                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                            Edit Employee
+                        </button>
                         <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
                             Edit Manager
                         </button>

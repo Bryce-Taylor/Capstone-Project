@@ -51,7 +51,8 @@ public class AppController {
         LocalDate today = LocalDate.now();
         List<Schedule> currSchedule = (List<Schedule>) scheduleRepo.findAll();
         if (today.isAfter(currSchedule.get(0).getEnd_date())) {
-
+            managerScoreCards();
+            employeeScoreCards();
             scheduleRepo.deleteAll();
             makeSchedule();
             List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
@@ -66,6 +67,7 @@ public class AppController {
             model.addAttribute("user", listUsers);
         }else if((today.getDayOfYear()/7)% 2 == 0 && today.getDayOfWeek().equals(DayOfWeek.SATURDAY)){
             managerScoreCards();
+            employeeScoreCards();
             List<Schedule> currentSchedule = (List<Schedule>) scheduleRepo.findAll();
             model.addAttribute("currentSchedule", currentSchedule);
         } else{
