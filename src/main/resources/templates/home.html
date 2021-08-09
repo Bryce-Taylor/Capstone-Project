@@ -16,27 +16,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Menu
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/chores">View Chore Descriptions</a>
-                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
-                    </div>
-                </li>
-            </ul>
+            <a class="nav-link" href="/chores">View Chore Descriptions</a>
         </div>
-        <p class="welcome text-primary" th:text="${'Hello, ' + #authentication.name}">
+        <p class="text-primary" th:text="${'Hello, ' + #authentication.name}">
             Name
         </p>
-        <a href="/user"><img src="https://cdn.iconscout.com/icon/free/png-512/account-269-866236.png" width="35" alt="Account"></a>
+        <a href="/user" style="margin-right: 3px; margin-left: 11px;"><img src="https://cdn.iconscout.com/icon/free/png-512/account-269-866236.png" width="35" alt="Account"></a>
+        <a class="nav-link" th:href="@{/logout}">Logout</a>
     </nav>
     <div class="toast ml-auto" role="alert" data-delay="700" data-autohide="false">
         <div class="toast-header">
             <strong class="mr-auto text-primary">Management</strong>
-
             <small class="text-muted">now</small>
             <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -196,7 +186,14 @@
         <div class="info-box">
             <div class="background">
                 <h1 id="title">Chore Management System</h1>
-                <p class="description">System to schedule chores </p>
+                <div class="background2">
+                    <p class="description">An automatic system that makes schedules for the Employees and Managers.
+                        For each Employee they will be assigned to a chore but only two days a week. The Managers
+                        can check-off the Employees to confirm that they did their chore. Also they will be selected
+                        to do 3 chores a week. Then at the end of that week there is a scorecard that will be sent
+                        to you as an email. The ScoreCard tracks you completing the chore you did that week.
+                    </p>
+                </div>
             </div>
         </div>
     </div>

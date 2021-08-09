@@ -124,3 +124,9 @@ transition: all 0.5s;
 .employee{
 margin-bottom: 6px;
 }
+
+.background2{
+background-color: #272626ad;
+padding: 0.5rem;
+border-radius: 20px;
+}

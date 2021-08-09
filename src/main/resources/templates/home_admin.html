@@ -20,12 +20,12 @@
 
                 <a class="nav-link" th:href="@{/choreslist}">Chores</a>
 
-                <a class="nav-link" th:href="@{/logout}">Logout</a>
 
         </div>
         <p class="welcome text-primary"th:text="${'Hello, ' + #authentication.name}">
             Name
         </p>
+        <a class="nav-link" th:href="@{/logout}">Logout</a>
     </nav>
     <h1 class="heading">Admin</h1>
 </div>
