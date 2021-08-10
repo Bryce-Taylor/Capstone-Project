@@ -11,7 +11,7 @@
 <body>
 <div sec:authorize="isAuthenticated()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Home</a>
+        <a class="navbar-brand" href="/">EverydayChore</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,17 +22,9 @@
 
 
         </div>
-        <p class="welcome text-primary"th:text="${'Hello, ' + #authentication.name}">
-            Name
-        </p>
         <a class="nav-link" th:href="@{/logout}">Logout</a>
     </nav>
     <h1 class="heading">Admin</h1>
-</div>
-<div sec:authorize="isAnonymous()" class="container text-center primary">
-    <h1>Welcome to CMS</h1>
-    <h3><a th:href="@{/register}">Register</a></h3>
-    <h3><a th:href="@{/login}">Login</a></h3>
 </div>
 <div>
     <h2 class="heading" th:text="${'Week ' + week_number}">Week </h2>
@@ -46,6 +38,7 @@
                             <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                             <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
                             <p class="card-text"  th:text="${schedule.chore}">Chore</p>
+                            <div th:if="${schedule.missed == false || schedule.completed == true}">
 
                             <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
@@ -53,7 +46,7 @@
                             <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
                                 Edit Manager
                             </button>
-
+                            </div>
                             <hr>
                         </div>
                     </section>
@@ -68,12 +61,15 @@
                         <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                         <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
                         <p class="card-text"  th:text="${schedule.chore}">Chore</p>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                        <div th:if="${schedule.missed == false || schedule.completed == true}">
+
+                            <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
-                        </button>
-                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
-                            Edit Manager
-                        </button>
+                            </button>
+                            <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                                Edit Manager
+                            </button>
+                        </div>
                         <hr>
                     </div>
                 </section>
@@ -87,12 +83,15 @@
                         <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                         <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
                         <p class="card-text"  th:text="${schedule.chore}">Chore</p>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                        <div th:if="${schedule.missed == false || schedule.completed == true}">
+
+                            <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
-                        </button>
-                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
-                            Edit Manager
-                        </button>
+                            </button>
+                            <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                                Edit Manager
+                            </button>
+                        </div>
                         <hr>
                     </div>
                 </section>
@@ -125,12 +124,15 @@
                         <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                         <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
                         <p class="card-text"  th:text="${schedule.chore}">Chore</p>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                        <div th:if="${schedule.missed == false || schedule.completed == true}">
+
+                            <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
-                        </button>
-                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
-                            Edit Manager
-                        </button>
+                            </button>
+                            <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                                Edit Manager
+                            </button>
+                        </div>
                         <hr>
                     </div>
                 </section>
@@ -149,12 +151,15 @@
                         <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                         <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
                         <p class="card-text"  th:text="${schedule.chore}">Chore</p>
-                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                        <div th:if="${schedule.missed == false || schedule.completed == true}">
+
+                            <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
-                         </button>
-                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
-                            Edit Manager
-                        </button>
+                            </button>
+                            <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                                Edit Manager
+                            </button>
+                        </div>
                         <hr>
                     </div>
                 </section>
@@ -168,12 +173,15 @@
                         <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                         <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
                         <p class="card-text"  th:text="${schedule.chore}">Chore</p>
-                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                        <div th:if="${schedule.missed == false || schedule.completed == true}">
+
+                            <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
-                         </button>
-                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
-                            Edit Manager
-                        </button>
+                            </button>
+                            <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                                Edit Manager
+                            </button>
+                        </div>
                         <hr>
                     </div>
                 </section>
@@ -187,12 +195,15 @@
                         <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                         <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
                         <p class="card-text"  th:text="${schedule.chore}">Chore</p>
-                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                        <div th:if="${schedule.missed == false || schedule.completed == true}">
+
+                            <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
                             </button>
-                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
-                            Edit Manager
-                        </button>
+                            <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                                Edit Manager
+                            </button>
+                        </div>
                         <hr>
                     </div>
                 </section>
@@ -206,12 +217,15 @@
                         <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                         <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
                         <p class="card-text"  th:text="${schedule.chore}">Chore</p>
-                         <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                        <div th:if="${schedule.missed == false || schedule.completed == true}">
+
+                            <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
                                 Edit Employee
-                         </button>
-                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
-                            Edit Manager
-                        </button>
+                            </button>
+                            <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                                Edit Manager
+                            </button>
+                        </div>
                         <hr>
                     </div>
                 </section>
@@ -225,12 +239,15 @@
                         <h6 class="card-text text-info"  th:text="${schedule.user}">Full Name</h6>
                         <h6 class="card-text"  th:text="${'Manager: ' + schedule.manager}">Manager</h6>
                         <p class="card-text"  th:text="${schedule.chore}">Chore</p>
-                        <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
-                            Edit Employee
-                        </button>
-                        <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
-                            Edit Manager
-                        </button>
+                        <div th:if="${schedule.missed == false || schedule.completed == true}">
+
+                            <button th:name="id" th:value="${schedule.id}" type="button" class="btn btn-primary employee" data-toggle="modal" data-target="#editingEmployee">
+                                Edit Employee
+                            </button>
+                            <button th:name="id" th:value="${schedule.id}" th:chore="${schedule.chore}" th:day="${schedule.day}" type="button" class="btn btn-primary manager" data-toggle="modal" data-target="#editingManger">
+                                Edit Manager
+                            </button>
+                        </div>
                         <hr>
                     </div>
                 </section>

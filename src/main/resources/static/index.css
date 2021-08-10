@@ -48,6 +48,8 @@ letter-spacing:8px;
 .description{
     color:white;
     font-size: 20px;
+    padding: 5px;
+    padding-bottom: 10px;
 }
 #title{
 color:white;
@@ -55,11 +57,12 @@ font-size: 60px;
 }
 
 .background{
-background-color: #000000c7;
-padding: 0.5rem;
+background-color: #595959;
+padding: 5px;
 border-radius: 20px;
 margin-left: 17rem;
 margin-right: 17rem;
+
 }
 
 .button{
@@ -70,6 +73,7 @@ margin-right: 17rem;
     padding-right: 5px;
     border-radius: 10px;
     transition: all 0.5s;
+    margin-top: 10px;
 }
 
 .button:hover{
@@ -79,6 +83,7 @@ margin-right: 17rem;
     color: white;
     transition: all 0.5s;
     text-decoration: none;
+
 }
 
 .schedule-grid {
@@ -129,4 +134,7 @@ margin-bottom: 6px;
 background-color: #272626ad;
 padding: 0.5rem;
 border-radius: 20px;
+}
+.login{
+padding-top: 15px;
 }
