@@ -9,7 +9,7 @@
     <link rel="stylesheet" th:href="@{/index.css}" />
 </head>
 <body>
-<div sec:authorize="isAuthenticated()">
+<div sec:authorize="isAuthenticated()" >
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/">EverydayChore</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,6 +21,7 @@
         <a href="/user" style="margin-right: 3px; margin-left: 11px;"><img src="https://cdn.iconscout.com/icon/free/png-512/account-269-866236.png" width="35" alt="Account"></a>
         <a class="nav-link" th:href="@{/logout}">Logout</a>
     </nav>
+    <div class="schedule-bg">
     <div class="toast ml-auto" role="alert" data-delay="700" data-autohide="false">
         <div class="toast-header">
             <strong class="mr-auto text-primary">Management</strong>
@@ -32,7 +33,7 @@
         <div class="toast-body"> Make sure to check off chores in user profile. </div>
     </div>
     <div>
-    <h2 class="heading" th:text="${'Week ' + week_number}">Week </h2>
+    <h1 class="heading week" th:text="${'Week ' + week_number}">Week </h1>
     <ul class="schedule-grid " style="padding-top: 30px;">
         <div class="card" style="width: 15rem;">
             <div class="card-body">
@@ -105,8 +106,8 @@
     </ul>
     </div>
     <div>
-        <h2 class="heading" th:text="${'Week ' + week_two_number}">Week </h2>
-        <ul class="schedule-grid " style="padding-top: 30px;">
+        <h1 class="heading week" th:text="${'Week ' + week_two_number}">Week </h1>
+        <ul class="schedule-grid " style="padding-top: 30px; margin-bottom: 0px; padding-bottom: 20px   ;">
             <div class="card" style="width: 15rem;">
                 <div class="card-body">
                     <h3>Monday</h3>
@@ -172,22 +173,22 @@
                     </section>
                 </div>
             </div>
-    </ul>
+        </ul>
     </div>
-    </ul>
+</div>
 </div>
 <div sec:authorize="isAnonymous()" class=" primary text-center">
         <div class="info-box">
             <div class="background">
-                <h1 id="title">EverydayChore</h1>
+                <h1 id="title"><b>EverydayChore</b></h1>
                 <div class="background2">
-                    <p class="description">ABOUT: EverydayChore is an automatic system that generates new work schedules
+                    <p class="description">EverydayChore is an automatic system that generates new work schedules
                         every two weeks. It makes completing chore more efficient by keeping up with daily chore check offs
                         for employees preforming chores on that specific days. Users are given a weekly report based on
                         chore completions each week.
                     </p>
                     <p class="description">LOGIN:  Please log in with your username and password provided by the admin. If you do not know your log in
-                        information contact us at bcca.cms@gmail.com.</p>
+                        information contact us at <b>bcca.cms@gmail.com.</b></p>
                 </div>
                 <div class="login">
                 <h3><a th:href="@{/login}" class="button btn-lg">Login</a></h3>
@@ -195,7 +196,14 @@
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        Created by Kenia Sandoval and Bryce Taylor
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
 </body>
 </html>
 <script>

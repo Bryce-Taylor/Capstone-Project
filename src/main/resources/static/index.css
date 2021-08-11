@@ -39,7 +39,7 @@ letter-spacing:8px;
     position: relative;
     width: auto;
     height: 800px;
-    background-image: url(https://images.unsplash.com/photo-1603712725038-e9334ae8f39f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80);
+    background-image: url(https://images.unsplash.com/photo-1617375819318-67968e5b25c3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YnVpc25lc3N8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60);
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -57,7 +57,7 @@ font-size: 60px;
 }
 
 .background{
-background-color: #595959;
+background-color: rgba(0, 0, 0, 0.5);;
 padding: 5px;
 border-radius: 20px;
 margin-left: 17rem;
@@ -131,10 +131,16 @@ margin-bottom: 6px;
 }
 
 .background2{
-background-color: #272626ad;
+background-color: black;
 padding: 0.5rem;
 border-radius: 20px;
 }
 .login{
 padding-top: 15px;
+}
+.schedule-bg{
+    background-image: url(https://images.unsplash.com/photo-1533035353720-f1c6a75cd8ab?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFja2dyb3VuZCUyMGltYWdlc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60);
+    background-attachment: fixed;
+    background-size: cover;
+    padding-bottom: 0px;
 }

@@ -24,11 +24,10 @@
         </div>
         <a class="nav-link" th:href="@{/logout}">Logout</a>
     </nav>
+    <div class="schedule-bg">
     <h1 class="heading">Admin</h1>
-</div>
-<div>
     <h2 class="heading" th:text="${'Week ' + week_number}">Week </h2>
-    <ul class="schedule-grid " style="padding-top: 30px;">
+    <ul class="schedule-grid " style="padding-top: 30px; ">
         <div class="card" style="width: 15rem;">
             <div class="card-body">
                 <h3>Monday</h3>
@@ -139,10 +138,9 @@
             </div>
         </div>
     </ul>
-</div>
 <div>
     <h2 class="heading" th:text="${'Week ' + week_two_number}">Week </h2>
-    <ul class="schedule-grid " style="padding-top: 30px;">
+    <ul class="schedule-grid " style="padding-top: 30px; margin-bottom: 0px; padding-bottom: 20px">
         <div class="card" style="width: 15rem;">
             <div class="card-body">
                 <h3>Monday</h3>
@@ -255,6 +253,7 @@
         </div>
     </ul>
 </div>
+</div>
 
 <!--MODAL-EMPLOYEE-->
 <div class="modal fade" id="editingEmployee" tabindex="-1" role="dialog" aria-labelledby="editingEmployeeLabel" aria-hidden="true">
@@ -284,6 +283,11 @@
             </form>
         </div>
     </div>
+</div>
+</div>
+<!-- Copyright -->
+<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    Created by Kenia Sandoval and Bryce Taylor
 </div>
 <!--MODAL-MANAGER-->
 <div class="modal fade" id="editingManger" tabindex="-1" role="dialog" aria-labelledby="editingMangerLabel" aria-hidden="true">
