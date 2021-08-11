@@ -135,6 +135,14 @@ background-color: #272626ad;
 padding: 0.5rem;
 border-radius: 20px;
 }
-.login{
+
+.chore-background{
+background: #f8f9fa;
+padding: 37px;
+margin-left: 20rem;
+margin-right: 20rem;
+border-radius: 52px;
+box-shadow: 3px 3px 5px #bbbbbb;
+}.login{
 padding-top: 15px;
 }
