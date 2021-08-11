@@ -16,6 +16,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <a class="nav-link" href="/chores">View Chore Descriptions</a>
             <a  class="dropdown-item" th:href="@{/logout}">Logout</a>
             <p class="text-primary"th:text="${'Hello, ' + #authentication.name}">
                 Name
@@ -24,8 +25,9 @@
     </nav>
 </div>
 <div>
+    <div class="checkoff-bg">
     <h1 class="heading">Your Chores</h1>
-    <ul class="schedule-grid " style="padding-top: 30px;">
+    <ul class="schedule-grid " style="padding-top: 30px; margin-bottom: 0px; padding-bottom: 20px">
         <section th:each="schedule: ${manager}">
             <div th:if="${schedule.missed ==  true || schedule.completed == true }">
                 <div class="card">
@@ -74,6 +76,7 @@
             </div>
         </section>
     </ul>
+</div>
 </div>
 </body>
 </html>
