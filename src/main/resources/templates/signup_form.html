@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/index.css}" />
 </head>
 <body>
 
@@ -17,23 +18,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Menu
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/choreslist}">Chores</a>
-                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
-                    </div>
-                </li>
-            </ul>
+            <a class="nav-link" th:href="@{/choreslist}">Chores</a>
         </div>
         <p class="welcome text-primary"th:text="${'Hello, ' + #authentication.name}">
             Name
         </p>
+        <a class="nav-link" th:href="@{/logout}">Logout</a>
     </nav>
-</div>
 </div>
 <div class="container text-center">
     <div>

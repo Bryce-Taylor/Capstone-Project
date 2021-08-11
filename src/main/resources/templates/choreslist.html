@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:td="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:td="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Chores</title>
@@ -16,21 +17,12 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Menu
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" th:href="@{/register}">Create New Employee</a>
-            <a class="dropdown-item" th:href="@{/logout}">Logout</a>
-          </div>
-        </li>
-      </ul>
+      <a class="nav-link" th:href="@{/register}">Create New Employee</a>
     </div>
     <p class="welcome text-primary"th:text="${'Hello, ' + #authentication.name}">
       Name
     </p>
+    <a class="nav-link" th:href="@{/logout}">Logout</a>
   </nav>
 </div>
 <div>
