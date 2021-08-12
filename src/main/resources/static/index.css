@@ -178,3 +178,7 @@ body{
 .footer{
 background-color: grey;
 }
+.box{
+padding: 20px;
+background-color: white;
+}
