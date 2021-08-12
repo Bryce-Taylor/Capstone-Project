@@ -106,6 +106,7 @@ padding-top: 20px;
 .heading{
 text-align:center;
 font-size: 50px;
+color:white;
 font-weight: bold;
 padding-top: 10px;
 }
@@ -149,7 +150,7 @@ box-shadow: 3px 3px 5px #bbbbbb;
 padding-top: 15px;
 }
 body{
-    background-image: url(https://images.unsplash.com/photo-1533035353720-f1c6a75cd8ab?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFja2dyb3VuZCUyMGltYWdlc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60);
+    background-image: url(https://images.unsplash.com/photo-1604147495798-57beb5d6af73?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Z3JheXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60);
     background-attachment: fixed;
     background-size: cover;
     padding-bottom: 0px;

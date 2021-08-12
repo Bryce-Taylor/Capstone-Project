@@ -18,18 +18,10 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Menu
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
-                    </div>
+                    <a class="nav-item" th:href="@{/logout}">Logout</a>
                 </li>
             </ul>
         </div>
-        <p class="welcome text-primary"th:text="${'Hello, ' + #authentication.name}">
-            Name
-        </p>
         <a href="/user"><img src="https://cdn.iconscout.com/icon/free/png-512/account-269-866236.png" width="35" alt="Account"></a>
 
     </nav>
