@@ -16,17 +16,16 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <a class="nav-link" href="/chores">View Chore Descriptions</a>
+            <a class="nav-link" href="/chores">Chore Descriptions</a>
         </div>
         <a href="/manager" style="margin-right: 3px; margin-left: 11px;"><img src="https://cdn.iconscout.com/icon/free/png-512/account-269-866236.png" width="35" alt="Account"></a>
         <a class="nav-link" th:href="@{/logout}">Logout</a>
     </nav>
     <div class="schedule-bg">
-        <h1 class="heading">Manager</h1>
 
     <div>
         <h2 class="heading" th:text="${'Week ' + week_number}">Week </h2>
-        <ul class="schedule-grid " style="padding-top: 30px;">
+        <ul class="schedule-grid " style="padding-top: 30px; padding-left: 0px;">
             <div class="card" style="width: 15rem;">
                 <div class="card-body">
                     <h3>Monday</h3>
@@ -148,7 +147,7 @@
     </div>
     <div>
         <h2 class="heading" th:text="${'Week ' + week_two_number}">Week </h2>
-        <ul class="schedule-grid " style="padding-top: 30px; margin-bottom: 0px; padding-bottom: 20px ">
+        <ul class="schedule-grid " style="padding-top: 30px; margin-bottom: 0px; padding-bottom: 20px padding-left: 0px; ">
             <div class="card" style="width: 15rem;">
                 <div class="card-body">
                     <h3>Monday</h3>

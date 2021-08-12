@@ -16,12 +16,12 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <a class="nav-link" href="/chores">View Chore Descriptions</a>
-            <a  class="dropdown-item" th:href="@{/logout}">Logout</a>
-            <p class="text-primary"th:text="${'Hello, ' + #authentication.name}">
-                Name
-            </p>
+            <a class="nav-link" href="/chores">Chore Descriptions</a>
+            <a  class="nav-link" th:href="@{/logout}">Logout</a>
         </div>
+        <p class=" welcome text-primary"th:text="${'Hello, ' + #authentication.name}">
+            Name
+        </p>
     </nav>
 </div>
 <div>
@@ -70,7 +70,7 @@
                         <h6 class="text-primary" th:text="${schedule.user}">User</h6>
                         <h6 class="card-subtitle mb-2 text-muted" th:text="${schedule.day}">Day</h6>
                         <p class="card-text"  th:text="${'Chore: ' + schedule.chore}">Chore</p>
-                        <p class="heading text-warning">Waiting for employee to check off</p>
+                        <p class=" text-warning" style="text-align: center;">Waiting for employee to check off</p>
                     </div>
                 </div>
             </div>

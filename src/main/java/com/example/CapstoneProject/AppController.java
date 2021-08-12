@@ -277,7 +277,7 @@ public class AppController {
                         if (choreCount != 2 && i < chores.size()) {
                             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/uuuu");
                             LocalDate friday = LocalDate.now();
-                            LocalDate monday = friday.plus(2, ChronoUnit.DAYS);
+                            LocalDate monday = friday.plus(4, ChronoUnit.DAYS);
                             LocalDate nextFriday = friday.plus(11, ChronoUnit.DAYS);
                             newSchedule.setStart_date(friday);
                             newSchedule.setEnd_date(nextFriday);
@@ -509,7 +509,7 @@ public class AppController {
         return "redirect:/";
     }
 
-    public void employeeScoreCard(String recipientEmail,String name , double percent, double overall)
+    public void employeeScoreCard(String recipientEmail,String name , double percent, double overall, int week)
             throws MessagingException, UnsupportedEncodingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -520,7 +520,7 @@ public class AppController {
         String subject = "Weekly Scorecard";
 
         String content = "<p>Hello,</p>"
-                + "<p>The weekly percentage for "+ name+ " was "+ percent+"% this week</p>"
+                + "<p>The weekly percentage for "+ name+ " was "+ percent+"% for the week </p>"
                 + "<p>The overall group performance "+ overall +"% </p>"
                 + "<p>Thank you, Management. ";
 
@@ -564,15 +564,12 @@ public class AppController {
             }
             if((today.getDayOfYear()/7) % 2 == 0 && !(week1 == 0)){
                 double percentageWeek1 = (counterWeek1 / (double) week1 * 100);
-                System.out.println("Employee: " + listOfUser.getFullName() + " Score:" + percentageWeek1);
-//                employeeScoreCard(listOfUser.getEmail(),listOfUser.getFullName(),percentageWeek1, overallPercentage());
+//                employeeScoreCard(listOfUser.getEmail(),listOfUser.getFullName(),percentageWeek1, overallPercentage(), week1);
 
             }else if((today.getDayOfYear()/7) % 2 == 1 && !(week2 == 0)){
                 double percentageWeek2 = (counterWeek2 / (double) week2 * 100);
-                System.out.println("Employee: " + listOfUser.getFullName() + " Score:" + percentageWeek2);
-//                employeeScoreCard(listOfUser.getEmail(),listOfUser.getFullName(),percentageWeek2, overallPercentage());
+//                employeeScoreCard(listOfUser.getEmail(),listOfUser.getFullName(),percentageWeek2, overallPercentage(),week2);
             }
-            System.out.println("[Week 1: "+week1+ "] [Week 2: "+week2+"]");
         }
 
     }

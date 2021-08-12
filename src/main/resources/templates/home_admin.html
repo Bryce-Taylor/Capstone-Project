@@ -23,9 +23,8 @@
         <a class="nav-link" th:href="@{/logout}">Logout</a>
     </nav>
     <div class="schedule-bg">
-    <h1 class="heading">Admin</h1>
     <h2 class="heading" th:text="${'Week ' + week_number}">Week </h2>
-    <ul class="schedule-grid " style="padding-top: 30px; ">
+    <ul class="schedule-grid " style="padding-top: 30px; padding-left: 0px; ">
         <div class="card" style="width: 15rem;">
             <div class="card-body">
                 <h3>Monday</h3>
@@ -177,7 +176,7 @@
     </ul>
 <div>
     <h2 class="heading" th:text="${'Week ' + week_two_number}">Week </h2>
-    <ul class="schedule-grid " style="padding-top: 30px; margin-bottom: 0px; padding-bottom: 20px">
+    <ul class="schedule-grid " style="padding-top: 30px; margin-bottom: 0px; padding-left: 0px; padding-bottom: 20px">
         <div class="card" style="width: 15rem;">
             <div class="card-body">
                 <h3>Monday</h3>

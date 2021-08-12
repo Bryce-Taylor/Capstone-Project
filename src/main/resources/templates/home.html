@@ -34,7 +34,7 @@
     </div>
     <div>
     <h1 class="heading week" th:text="${'Week ' + week_number}">Week </h1>
-    <ul class="schedule-grid " style="padding-top: 30px;">
+    <ul class="schedule-grid " style="padding-top: 30px; padding-left: 0px; !important">
         <div class="card" style="width: 15rem;">
             <div class="card-body">
                 <h3>Monday</h3>
@@ -107,7 +107,7 @@
     </div>
     <div>
         <h1 class="heading week" th:text="${'Week ' + week_two_number}">Week </h1>
-        <ul class="schedule-grid " style="padding-top: 30px; margin-bottom: 0px; padding-bottom: 20px   ;">
+        <ul class="schedule-grid " style="padding-top: 30px; margin-bottom: 0px; padding-bottom: 20px; padding-left: 0px; ;">
             <div class="card" style="width: 15rem;">
                 <div class="card-body">
                     <h3>Monday</h3>
@@ -198,13 +198,13 @@
     </div>
 
     <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        Created by Kenia Sandoval and Bryce Taylor
-    </div>
+
     <!-- Copyright -->
-</footer>
 <!-- Footer -->
 </body>
+<div class="text-center p-4 " style="background-color: rgba(0, 0, 0, 0.05);">
+    Created by Kenia Sandoval and Bryce Taylor
+</div>
 </html>
 <script>
     $(document).ready(function() {
