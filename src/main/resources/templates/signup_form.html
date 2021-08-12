@@ -36,21 +36,21 @@
           method="post" style="max-width: 600px; margin: 0 auto; padding-top: 10px;">
         <div class="m-3">
             <div class="form-group row ">
-                <label class="col-4 col-form-label">Username: </label>
+                <label class="col-4 col-form-label" style="color: white;">Username: </label>
                 <div class="col-8">
                     <input type="text" th:field="*{username}" class="form-control"
                            required minlength="2" maxlength="40"/>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-4 col-form-label">E-mail: </label>
+                <label class="col-4 col-form-label"  style="color: white;">E-mail: </label>
                 <div class="col-8">
                     <input type="email" th:field="*{email}" class="form-control" required />
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">Password: </label>
+                <label class="col-4 col-form-label"  style="color: white;">Password: </label>
                 <div class="col-8">
                     <input type="password" th:field="*{password}" class="form-control"
                            required minlength="6" maxlength="10"/>
@@ -58,7 +58,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">Confirm Password: </label>
+                <label class="col-4 col-form-label"  style="color: white;">Confirm Password: </label>
                 <div class="col-8">
                     <input name="password_confirm" required="required" type="password" id="password_confirm" oninput="check(this)" class="form-control" />
                     <script language='javascript' type='text/javascript'>
@@ -74,7 +74,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">First Name: </label>
+                <label class="col-4 col-form-label"  style="color: white;">First Name: </label>
                 <div class="col-8">
                     <input type="text" th:field="*{first_name}" class="form-control"
                            required minlength="2" maxlength="20"/>
@@ -82,7 +82,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">Last Name: </label>
+                <label class="col-4 col-form-label"  style="color: white;">Last Name: </label>
                 <div class="col-8">
                     <input type="text" th:field="*{last_name}" class="form-control"
                            required minlength="2" maxlength="20" />
@@ -90,16 +90,16 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">Role: </label>
+                <label class="col-4 col-form-label"  style="color: white;">Role: </label>
                 <div class="col-8">
                     <input type="radio" id="employee" name="role" value="Employee" required>
-                    <label for="Employee">Employee</label>
+                    <label for="Employee" style="color: white;">Employee</label>
                     <br/>
                     <input type="radio" id="manger" name="role" value="Manger">
-                    <label for="Manger">Manger</label>
+                    <label for="Manger" style="color: white;">Manger</label>
+                    <input type="hidden" th:field="*{reset_password_token}" value="null"/>
                 </div>
             </div>
-
             <div>
                 <button type="submit" class="btn btn-primary">Create Employee</button>
             </div>

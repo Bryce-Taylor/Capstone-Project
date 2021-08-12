@@ -18,9 +18,10 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <a class="nav-link" href="/chores">View Chore Descriptions</a>
         </div>
-        <p class="welcome text-primary"th:text="${'Hello, ' + #authentication.name}">
+        <p class="welcome "th:text="${'Hello, ' + #authentication.name}">
             Name
         </p>
+        <a href="/user" style="margin-right: 11px; margin-left: 11px; "><img src="https://cdn.iconscout.com/icon/free/png-512/account-269-866236.png" width="35" alt="Account"></a>
         <form th:action="@{/doLogout}" method="post">
             <input  class="form-submit-button" type="submit" value="Logout" />
         </form>
