@@ -155,6 +155,26 @@ body{
     background-size: cover;
     padding-bottom: 0px;
 }
+
+.form-submit-button {
+     background: #1E90FF;
+     color: #fff;
+     border: 1px solid #eee;
+     border-radius: 20px;
+     box-shadow: 5px 5px 5px;
+     text-shadow:none;
+     transition: all 0.5s;
+}
+
+.form-submit-button:hover {
+     background: #016ABC;
+     color: #fff;
+     border: 1px solid #eee;
+     border-radius: 20px;
+     box-shadow: 10px 10px 10px;
+     text-shadow:none;
+     transition: all 0.5s;
+}
 .footer{
 background-color: grey;
 }

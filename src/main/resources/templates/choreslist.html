@@ -22,7 +22,9 @@
     <p class="welcome text-primary"th:text="${'Hello, ' + #authentication.name}">
       Name
     </p>
-    <a class="nav-link" th:href="@{/logout}">Logout</a>
+    <form th:action="@{/doLogout}" method="post">
+      <input  class="form-submit-button" type="submit" value="Logout" />
+    </form>
   </nav>
 </div>
 <div>

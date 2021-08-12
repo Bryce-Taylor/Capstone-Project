@@ -18,8 +18,12 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <a class="nav-link" href="/chores">View Chore Descriptions</a>
         </div>
-        <a href="/user" style="margin-right: 3px; margin-left: 11px;"><img src="https://cdn.iconscout.com/icon/free/png-512/account-269-866236.png" width="35" alt="Account"></a>
-        <a class="nav-link" th:href="@{/logout}">Logout</a>
+        <p class="welcome text-primary"th:text="${'Hello, ' + #authentication.name}">
+            Name
+        </p>
+        <form th:action="@{/doLogout}" method="post">
+            <input  class="form-submit-button" type="submit" value="Logout" />
+        </form>
     </nav>
     <div class="schedule-bg">
     <div class="toast ml-auto" role="alert" data-delay="700" data-autohide="false">

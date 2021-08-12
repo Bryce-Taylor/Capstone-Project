@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 import java.io.UnsupportedEncodingException;
 import java.time.DayOfWeek;
@@ -138,6 +137,11 @@ public class AppController {
         return "signup_form";
     }
 
+    @GetMapping("/login")
+    public String viewLoginPage() {
+        return "login";
+    }
+
     @PostMapping("/process_register")
     public String processRegister(User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -146,6 +150,8 @@ public class AppController {
         userRepo.save(user);
         return "redirect:/";
     }
+
+
 
     public void sendEmail(String recipientEmail, User user, int weekOne, int weekTwo)
             throws MessagingException, UnsupportedEncodingException {
@@ -384,7 +390,7 @@ public class AppController {
     @PostMapping("/edit-chore")
     public String editChore(Chores chore, @PathParam(value = "id") Long id) {
         Optional<Chores> oldChore = choresRepo.findById(id);
-        if (oldChore != null) {
+        if (oldChore.isPresent()) {
             oldChore.get().setChore(chore.getChore());
             oldChore.get().setDescription(chore.getDescription());
             choresRepo.save(oldChore.get());
