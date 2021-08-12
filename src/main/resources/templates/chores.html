@@ -17,9 +17,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
         </div>
-        <p class="welcome text-primary"th:text="${'Hello, ' + #authentication.name}">
-            Name
-        </p>
         <form th:action="@{/doLogout}" method="post">
             <input  class="form-submit-button" type="submit" value="Logout" />
         </form>
@@ -32,8 +29,9 @@
         <section th:each="chores: ${chores}">
             <div class="card" style="width: 35rem;">
                 <div class="card-body ">
-                    <h5 class="card-title" th:text="${'Chore: ' + chores.chore}">Chore</h5>
-                    <p class="card-text"  th:text="${'Description: ' + chores.description}">Description</p>
+                    <h2 class="card-title text-primary" style="text-align: center;" th:text="${ chores.chore}">Chore</h2>
+                    <h6><b>Description:</b></h6>
+                    <p class="card-text"  th:text="${chores.description}">Description</p>
                 </div>
             </div>
         </section>
