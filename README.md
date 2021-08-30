@@ -89,4 +89,4 @@ but could not find any web applications in spring.
 - MySQL
 
 ## GitHub Repository 
-https://github.com/Bryce-Taylor/Capstone-Project
+https://github.com/Bryce-Taylor/Everyday-Chore
